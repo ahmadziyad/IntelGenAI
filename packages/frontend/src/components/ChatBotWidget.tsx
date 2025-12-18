@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion, AnimatePresence } from 'framer-motion';
 import aiTheme from '../styles/aiTheme';
-import IntelGenDemo from './IntelGenDemo';
+import ChatWidget from './ChatWidget';
 
 interface ChatBotWidgetProps {
   onChatOpen?: () => void;
@@ -204,15 +204,24 @@ const ChatBotWidget: React.FC<ChatBotWidgetProps> = ({ onChatOpen }) => {
             transition={{ duration: 0.3, ease: "easeOut" }}
           >
             <ChatHeader>
-              <ChatTitle>
-                🤖 IntelGen Assistant
-              </ChatTitle>
+              <ChatTitle />
               <CloseButton onClick={handleCloseChat} aria-label="Close chat">
                 ✕
               </CloseButton>
             </ChatHeader>
             <ChatContent>
-              <IntelGenDemo onChatOpen={() => { }} />
+              <ChatWidget
+                config={{
+                  styling: {
+                    primaryColor: aiTheme.colors.aiBlue,
+                    backgroundColor: 'transparent',
+                    fontFamily: aiTheme.typography.fontFamily.primary,
+                    borderRadius: '0',
+                    position: 'bottom-right'
+                  }
+                }}
+                welcomeMessage="Welcome! I'm your AI companion. How can I help you today?"
+              />
             </ChatContent>
           </ChatPanel>
         )}
@@ -222,10 +231,10 @@ const ChatBotWidget: React.FC<ChatBotWidgetProps> = ({ onChatOpen }) => {
         onClick={handleToggleChat}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
-        aria-label={isOpen ? "Close chat" : "Open chat assistant"}
-        title={isOpen ? "Close chat" : "Open IntelGen Assistant"}
+        aria-label={isOpen ? "Close chat" : "Open chat"}
+        title={isOpen ? "Close chat" : "Open chat"}
       >
-        {isOpen ? '✕' : '🤖'}
+        {isOpen ? '✕' : '💬'}
       </ChatButton>
     </WidgetContainer>
   );

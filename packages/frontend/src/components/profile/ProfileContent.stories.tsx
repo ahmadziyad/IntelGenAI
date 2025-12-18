@@ -69,27 +69,27 @@ export const Default: Story = {
 // Designer profile
 export const Designer: Story = {
   args: {
-    name: sampleProfiles.designer.basic.name,
-    title: sampleProfiles.designer.basic.title,
-    description: sampleProfiles.designer.basic.description,
+    name: 'Sarah Chen',
+    title: 'Senior UX/UI Designer',
+    description: 'Creative designer with 10+ years of experience crafting intuitive user experiences and beautiful interfaces for web and mobile applications.',
   },
 };
 
 // Minimal content
 export const MinimalContent: Story = {
   args: {
-    name: sampleProfiles.minimal.basic.name,
-    title: sampleProfiles.minimal.basic.title,
-    description: sampleProfiles.minimal.basic.description,
+    name: 'Sam Smith',
+    title: 'Designer',
+    description: 'Creative professional.',
   },
 };
 
 // Long content with truncation
 export const LongContent: Story = {
   args: {
-    name: sampleProfiles.longContent.basic.name,
-    title: sampleProfiles.longContent.basic.title,
-    description: sampleProfiles.longContent.basic.description,
+    name: 'Dr. Maria Rodriguez',
+    title: 'Principal Research Scientist',
+    description: 'Experienced researcher with over 15 years in artificial intelligence, machine learning, and ethical AI development. Currently leading cross-functional teams to develop responsible AI systems that prioritize fairness, transparency, and human-centered design principles.',
   },
   parameters: {
     docs: {
@@ -219,7 +219,7 @@ export const AccessibilityFocused: Story = {
   args: {
     name: sampleProfiles.developer.basic.name,
     title: sampleProfiles.developer.basic.title,
-    description: sampleProfiles.longContent.basic.description,
+    description: 'Experienced researcher with over 15 years in artificial intelligence, machine learning, and ethical AI development. Currently leading cross-functional teams to develop responsible AI systems that prioritize fairness, transparency, and human-centered design principles.',
   },
   parameters: {
     docs: {

@@ -164,13 +164,13 @@ const SafeProjectImage: React.FC<{ src?: string; alt: string; theme: ProfileStyl
 const ProjectsTab: React.FC<ProjectsTabProps> = ({ profile, styling }) => {
   const handleIntelGenStudioClick = () => {
     // Scroll to bottom right to show the chat widget
-    const chatWidget = document.querySelector('[aria-label="Open chat assistant"]') as HTMLButtonElement;
-    if (chatWidget) {
+    const chatWidget = document.querySelector('[aria-label="Open chat"]');
+    if (chatWidget instanceof HTMLElement) {
       chatWidget.click();
-      // Smooth scroll to bottom right
+
+      // Optional: scroll to the widget area
       window.scrollTo({
         top: document.body.scrollHeight,
-        left: document.body.scrollWidth,
         behavior: 'smooth'
       });
     }
@@ -195,15 +195,15 @@ const ProjectsTab: React.FC<ProjectsTabProps> = ({ profile, styling }) => {
 
   return (
     <TabContainer>
-      <Heading level={2} theme={styling} style={{ 
-        marginBottom: '2rem', 
+      <Heading level={2} theme={styling} style={{
+        marginBottom: '2rem',
         color: '#E2E8F0',
         fontSize: '1.5rem',
         fontWeight: '600'
       }}>
         Personal Projects
       </Heading>
-      
+
       <ProjectsGrid>
         {profile.projects.map((project) => (
           <ProjectCard key={project.id} theme={styling}>
@@ -214,7 +214,7 @@ const ProjectsTab: React.FC<ProjectsTabProps> = ({ profile, styling }) => {
             />
             <Flex direction="column" gap="0.75rem" theme={styling}>
               <Flex justify="space-between" align="flex-start" theme={styling}>
-                <Heading level={3} theme={styling} style={{ 
+                <Heading level={3} theme={styling} style={{
                   color: '#E2E8F0',
                   fontSize: '1.2rem',
                   flex: 1
@@ -226,10 +226,10 @@ const ProjectsTab: React.FC<ProjectsTabProps> = ({ profile, styling }) => {
                     <ProjectButton
                       onClick={handleIntelGenStudioClick}
                       theme={styling}
-                      title="Open IntelGen Studio chat interface"
+                      title="Open chat interface"
                     >
                       Try Demo
-                      <span>🤖</span>
+                      <span>💬</span>
                     </ProjectButton>
                   ) : (
                     <ProjectLink
@@ -244,14 +244,14 @@ const ProjectsTab: React.FC<ProjectsTabProps> = ({ profile, styling }) => {
                   )
                 )}
               </Flex>
-              <Text variant="body" theme={styling} style={{ 
+              <Text variant="body" theme={styling} style={{
                 color: '#CBD5E1',
                 lineHeight: '1.6'
               }}>
                 {project.description}
               </Text>
               <div style={{ marginTop: '0.5rem' }}>
-                <Text variant="caption" theme={styling} style={{ 
+                <Text variant="caption" theme={styling} style={{
                   color: '#94A3B8',
                   marginBottom: '0.5rem',
                   display: 'block',

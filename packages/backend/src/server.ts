@@ -5,6 +5,7 @@ import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
 import { createLogger, format, transports } from 'winston';
 import { LLMService } from './services/llmService';
+import { profileKnowledgeService } from './services/profileKnowledgeService';
 
 // Load environment variables
 dotenv.config();
@@ -140,6 +141,9 @@ async function startServer() {
     if (process.env.NODE_ENV !== 'test') {
       await llmService.initialize();
       logger.info('LLM Service initialized successfully');
+
+      // Seed profile knowledge
+      profileKnowledgeService.seedProfileKnowledge(llmService.getKnowledgeBaseService());
 
       // Start cleanup interval for expired contexts
       setInterval(() => {

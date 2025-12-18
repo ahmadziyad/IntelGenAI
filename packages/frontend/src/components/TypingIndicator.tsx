@@ -49,13 +49,13 @@ const TypingText = styled.span`
 
 const TypingIndicator: React.FC<TypingIndicatorProps> = ({ primaryColor }) => {
   return (
-    <div role="status" aria-label="Assistant is typing">
+    <div role="status" aria-label="Typing...">
       <TypingWrapper>
         <TypingBubble>
           <Dot $delay={0} />
           <Dot $delay={0.2} />
           <Dot $delay={0.4} />
-          <TypingText>Assistant is typing...</TypingText>
+          <TypingText>Typing...</TypingText>
         </TypingBubble>
       </TypingWrapper>
     </div>

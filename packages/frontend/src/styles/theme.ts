@@ -1,43 +1,43 @@
 // Modern design system theme configuration
 import { ProfileStyling } from '../types/profile';
 
-// Modern design system theme configuration
+// Modern design system theme configuration - Inspired by uxdesignerstockholm.se
 export const defaultTheme: ProfileStyling = {
   colors: {
-    primary: '#3B82F6', // Bright Blue
-    secondary: '#8B5CF6', // Violet
-    accent: '#06B6D4', // Cyan
-    background: '#FFFFFF', // Keep white card background for contrast
-    text: '#1F2937', // Gray-800
-    textSecondary: '#4B5563', // Gray-600
+    primary: '#FFFFFF', // Clean white
+    secondary: '#A3A3A3', // Neutral gray
+    accent: '#525252', // Darker gray
+    background: '#171717', // Neutral 900 surface
+    text: '#FFFFFF',
+    textSecondary: '#A3A3A3',
   },
   gradients: {
-    primary: 'linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%)',
-    secondary: 'linear-gradient(135deg, #6366F1 0%, #EC4899 100%)',
-    // New Dark AI Background
-    background: 'linear-gradient(135deg, #0F172A 0%, #1E1B4B 50%, #312E81 100%)',
+    primary: 'linear-gradient(135deg, #FFFFFF 0%, #A3A3A3 100%)',
+    secondary: 'linear-gradient(135deg, #262626 0%, #0D0D0D 100%)',
+    // New Dark Aesthetic Background
+    background: 'linear-gradient(135deg, #0D0D0D 0%, #171717 50%, #262626 100%)',
   },
   typography: {
-    fontFamily: '"Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-    headingFont: '"Inter", sans-serif',
+    fontFamily: '"Manrope", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+    headingFont: '"Manrope", sans-serif',
     fontSize: {
       small: '0.875rem',
-      medium: '1rem',
-      large: '1.25rem',
-      xlarge: '2rem',
+      medium: '1.125rem', // Slightly larger for better readability
+      large: '1.5rem',
+      xlarge: '3rem', // Bold H1s
     },
   },
   spacing: {
-    small: '0.5rem',
-    medium: '1rem',
-    large: '1.5rem',
-    xlarge: '2rem',
+    small: '0.75rem', // Increased whitespace
+    medium: '1.5rem',
+    large: '2.5rem',
+    xlarge: '4rem',
   },
-  borderRadius: '1rem',
+  borderRadius: '0.5rem', // Sharper corners
   shadows: {
-    small: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
-    medium: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
-    large: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+    small: '0 1px 2px 0 rgba(0, 0, 0, 0.5)',
+    medium: '0 4px 6px -1px rgba(0, 0, 0, 0.6), 0 2px 4px -1px rgba(0, 0, 0, 0.4)',
+    large: '0 20px 25px -5px rgba(0, 0, 0, 0.8)',
   },
 };
 

@@ -33,7 +33,7 @@ export const sampleExtendedProfileData: ExtendedProfileData = {
     {
       id: 'edu-1',
       institution: 'University at Buffalo',
-      degree: 'Master\'s degree',
+      degree: 'Master\'s Degree',
       field: 'Management Information Systems',
       duration: 'June 2021 - May 2022',
       description: 'Focus on scaling AI-driven and cloud-based solutions.',
@@ -41,7 +41,7 @@ export const sampleExtendedProfileData: ExtendedProfileData = {
     {
       id: 'edu-2',
       institution: 'Shri Ram Murti Smarak (SRMS) Institutions',
-      degree: 'Bachelor of Technology - BTech',
+      degree: 'Bachelor of Technology - B.Tech',
       field: 'Information Technology',
       duration: 'July 2007 - June 2011',
       description: '',
@@ -53,7 +53,7 @@ export const sampleExtendedProfileData: ExtendedProfileData = {
       company: 'Royal Cyber Inc.',
       position: 'Senior Software Engineer',
       duration: 'August 2022 - Present',
-      description: 'Developed and supported BRMS modules for Eligibility and Rating. Led Edge3 credit reporting integration with TransUnion. Designed and optimized PostgreSQL and Oracle SQL packages. Built a Title Chain Extraction & Review platform combining OCR pipelines, Python backend services, and React UI. Created reusable full-stack application boilerplates. Implemented secure, scalable REST and SOAP integrations using FastAPI.',
+      description: 'Delivering Enterprise Applications using Python, FastAPI, ReactJS, LLMs for underwriting, compliance, and operations. Built multi-agent RAG systems, reusable agent frameworks, and ingestion pipelines automating decisioning and document analysis, reducing cycle time 40–70%. Led secure AWS deployments, API integrations, and legacy-to-cloud migrations.',
       technologies: ['Python', 'React JS', 'FastAPI', 'AWS Bedrock', 'SageMaker AI', 'Docker', 'Kubernetes', 'Oracle', 'DynamoDB'],
     },
     {
@@ -155,21 +155,52 @@ export const sampleExtendedProfileData: ExtendedProfileData = {
   ],
   certifications: [
     {
+
+
+
+
+
+
+
+
+
+
+
+
       id: 'cert-1',
       name: 'AWS Certified Solutions Architect – Associate',
       issuer: 'Amazon Web Services',
       date: '2025 - 2028',
-      link: 'https://aws.amazon.com/certification/certified-solutions-architect-associate/',
-      logo: 'https://d1.awsstatic.com/training-and-certification/certification-badges/AWS-Certified-Solutions-Architect-Associate_badge.3419559c682629072f1eb968d59dea0741772c0f.png'
+      link: 'https://www.credly.com/badges/434e0060-decf-4004-a203-b348ce45bc3a',
+      logo: 'https://images.credly.com/size/680x680/images/0e284c3f-5164-4b21-8660-0d84737941bc/image.png'
     },
     {
       id: 'cert-2',
-      name: 'Oracle Cloud Infrastructure Certified Generative AI Professional',
+      name: 'Certified AI Practitioner - AWS',
       issuer: 'Oracle',
       date: '2025 - 2027',
-      link: 'https://education.oracle.com/oracle-cloud-infrastructure-2024-generative-ai-professional/pexam_1Z0-1127-24',
-      logo: 'https://brm-workforce.oracle.com/pdf/certview/images/OCI24GENAIPROl.png'
+      link: 'https://www.credly.com/badges/7ce75189-ba1e-41e9-9838-58eebba0cf45',
+      logo: 'https://images.credly.com/size/680x680/images/4d4693bb-530e-4bca-9327-de07f3aa2348/image.png'
     },
+    {
+      id: 'cert-3',
+      name: 'OCI Certified Generative AI Professional - Oracle',
+      issuer: 'Amazon Web Services',
+      date: '2024 - 2027',
+      link: 'https://catalog-education.oracle.com/ords/certview/sharebadge?id=81D1A41B779031CF40494CCD0223D4BE774A703453A326F142DB88EE7D1D0615',
+      logo: 'https://brm-workforce.oracle.com/pdf/certview/images/OCI25GAIOCP.png'
+    }
+    ,
+    {
+
+      id: 'cert-4',
+      name: 'Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate',
+      issuer: 'Amazon Web Services',
+      date: '2024 - 2027',
+      link: 'https://catalog-education.oracle.com/ords/certview/sharebadge?id=6A420C1195839CAC3BB2C6EAB86497DB487D265E80EBD0FEC24A7C552E733D0E',
+      logo: 'https://brm-workforce.oracle.com/pdf/certview/images/OCI25AICFAV1.png'
+    },
+
     {
       id: 'cert-5',
       name: 'AWS Certified AI Practitioner',
@@ -177,9 +208,10 @@ export const sampleExtendedProfileData: ExtendedProfileData = {
       date: '2024 - 2027',
       link: 'https://aws.amazon.com/certification/certified-ai-practitioner/',
       logo: 'https://d1.awsstatic.com/training-and-certification/certification-badges/AWS-Certified-AI-Practitioner_badge.png'
-    },
+    }
+    ,
     {
-      id: 'cert-3',
+      id: 'cert-6',
       name: 'Project Management Professional (PMP)',
       issuer: 'Project Management Institute',
       date: '2023 - 2026',
@@ -187,12 +219,28 @@ export const sampleExtendedProfileData: ExtendedProfileData = {
       logo: 'https://www.pmi.org/-/media/pmi/microsites/cert-redesign/images/logos/pmp.png'
     },
     {
-      id: 'cert-4',
+      id: 'cert-7',
       name: 'PMI Agile Certified Practitioner (PMI-ACP)',
       issuer: 'Project Management Institute',
       date: '2023 - 2026',
       link: 'https://www.pmi.org/certifications/agile-acp',
       logo: 'https://www.pmi.org/-/media/pmi/microsites/cert-redesign/images/logos/acp.png'
+    },
+    {
+      id: 'cert-8',
+      name: 'Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate',
+      issuer: 'Oracle',
+      date: '2024 - 2027',
+      link: 'https://catalog-education.oracle.com/ords/certview/sharebadge?id=6A420C1195839CAC3BB2C6EAB86497DB487D265E80EBD0FEC24A7C552E733D0E',
+      logo: 'https://brm-workforce.oracle.com/pdf/certview/images/OCI25AICFAV1.png'
+    },
+    {
+      id: 'cert-9',
+      name: 'Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate',
+      issuer: 'Oracle',
+      date: '2024 - 2027',
+      link: 'https://catalog-education.oracle.com/ords/certview/sharebadge?id=6A420C1195839CAC3BB2C6EAB86497DB487D265E80EBD0FEC24A7C552E733D0E',
+      logo: 'https://brm-workforce.oracle.com/pdf/certview/images/OCI25AICFAV1.png'
     },
   ],
 };

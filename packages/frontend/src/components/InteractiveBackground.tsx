@@ -29,7 +29,7 @@ const Vignette = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at center, transparent 0%, rgba(15, 23, 42, 0.4) 100%);
+  background: radial-gradient(circle at center, transparent 0%, rgba(13, 13, 13, 0.6) 100%);
   pointer-events: none;
   z-index: 1;
 `;
@@ -45,7 +45,6 @@ interface Particle {
     size: number;
     color: string;
     alpha: number;
-    targetAlpha: number;
 }
 
 const InteractiveBackground: React.FC = () => {
@@ -60,9 +59,6 @@ const InteractiveBackground: React.FC = () => {
         const canvas = canvasRef.current;
         if (!canvas) return;
 
-        const ctx = canvas.getContext('2d');
-        if (!ctx) return;
-
         const handleResize = () => {
             if (containerRef.current && canvas) {
                 canvas.width = containerRef.current.clientWidth;
@@ -72,11 +68,11 @@ const InteractiveBackground: React.FC = () => {
         };
 
         const initParticles = () => {
-            const particleCount = 60;
+            const particleCount = 40; // Reduced for cleaner look
             const colors = [
-                aiTheme.colors.aiBlue,
-                aiTheme.colors.aiPurple,
-                aiTheme.colors.aiCyan,
+                '#FFFFFF',
+                '#A3A3A3',
+                '#525252',
             ];
 
             particlesRef.current = [];
@@ -84,12 +80,11 @@ const InteractiveBackground: React.FC = () => {
                 particlesRef.current.push({
                     x: random(0, canvas.width),
                     y: random(0, canvas.height),
-                    vx: random(-0.5, 0.5),
-                    vy: random(-0.5, 0.5),
-                    size: random(1, 3),
+                    vx: random(-0.3, 0.3),
+                    vy: random(-0.3, 0.3),
+                    size: random(0.5, 1.5), // Smaller particles
                     color: colors[Math.floor(random(0, colors.length))],
-                    alpha: random(0.1, 0.5),
-                    targetAlpha: random(0.1, 0.5),
+                    alpha: random(0.05, 0.2), // More subtle
                 });
             }
         };
@@ -125,60 +120,56 @@ const InteractiveBackground: React.FC = () => {
         const animate = () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Draw background gradient mesh
+            // Draw very subtle background spot light
             const bgGradient = ctx.createRadialGradient(
                 mousePos.x, mousePos.y, 0,
-                mousePos.x, mousePos.y, 800
+                mousePos.x, mousePos.y, 600
             );
-            bgGradient.addColorStop(0, 'rgba(30, 41, 59, 0.4)');
-            bgGradient.addColorStop(1, 'rgba(15, 23, 42, 0)');
+            bgGradient.addColorStop(0, 'rgba(255, 255, 255, 0.03)');
+            bgGradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
 
             ctx.fillStyle = bgGradient;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             // Update and draw particles
             particlesRef.current.forEach((p) => {
-                // Move particles
                 p.x += p.vx;
                 p.y += p.vy;
 
-                // Bounce off walls
                 if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
                 if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
 
-                // Connect particles near mouse
                 const dx = mousePos.x - p.x;
                 const dy = mousePos.y - p.y;
                 const distance = Math.sqrt(dx * dx + dy * dy);
 
-                if (distance < 200) {
+                // Connector to mouse - very subtle
+                if (distance < 150) {
                     ctx.beginPath();
-                    ctx.strokeStyle = p.color;
-                    // Opacity based on proximity to mouse
-                    const lineAlpha = (1 - distance / 200) * 0.3;
+                    ctx.strokeStyle = '#FFFFFF';
+                    const lineAlpha = (1 - distance / 150) * 0.1;
                     ctx.globalAlpha = lineAlpha;
-                    ctx.lineWidth = 1;
+                    ctx.lineWidth = 0.5;
                     ctx.moveTo(p.x, p.y);
                     ctx.lineTo(mousePos.x, mousePos.y);
                     ctx.stroke();
                     ctx.globalAlpha = 1;
 
-                    // Slightly attract particles to mouse
-                    p.x += dx * 0.005;
-                    p.y += dy * 0.005;
+                    p.x += dx * 0.002;
+                    p.y += dy * 0.002;
                 }
 
-                // Connect particles to each other (optional for mesh effect)
+                // Mesh connections - even more subtle
                 particlesRef.current.forEach((otherP) => {
                     const ddx = p.x - otherP.x;
                     const ddy = p.y - otherP.y;
                     const ddist = Math.sqrt(ddx * ddx + ddy * ddy);
 
-                    if (ddist < 100) {
+                    if (ddist < 80) {
                         ctx.beginPath();
-                        ctx.strokeStyle = aiTheme.colors.aiBlue;
-                        ctx.globalAlpha = (1 - ddist / 100) * 0.1;
-                        ctx.lineWidth = 0.5;
+                        ctx.strokeStyle = '#FFFFFF';
+                        ctx.globalAlpha = (1 - ddist / 80) * 0.05;
+                        ctx.lineWidth = 0.3;
                         ctx.moveTo(p.x, p.y);
                         ctx.lineTo(otherP.x, otherP.y);
                         ctx.stroke();
@@ -186,7 +177,7 @@ const InteractiveBackground: React.FC = () => {
                     }
                 });
 
-                // Draw particle dot
+                // Draw monochromatic particle
                 ctx.beginPath();
                 ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
                 ctx.fillStyle = p.color;

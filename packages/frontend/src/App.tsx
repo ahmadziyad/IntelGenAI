@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import TabNavigation from './components/TabNavigation';
 import ChatBotWidget from './components/ChatBotWidget';
+
 import ProfileOverview from './components/profile/ProfileOverview';
 import ExperienceTab from './components/profile/ExperienceTab';
 import SkillsTab from './components/profile/SkillsTab';
@@ -50,19 +51,28 @@ function App() {
     loadExtendedProfile();
   }, []);
 
-  const handleChatOpen = () => {
-    console.log('Chat assistant opening...');
-  };
+
 
   const tabs = [
     {
-      id: 'profile',
-      label: 'Profile',
-      content: (
-        <ProfileOverview
-          profile={sampleProfileData}
+      id: 'skills',
+      label: 'Skills',
+      content: !isLoading && extendedProfile ? (
+        <SkillsTab
+          profile={extendedProfile}
           styling={defaultTheme}
         />
+      ) : (
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          height: '100%',
+          color: '#94A3B8',
+          fontSize: '1.1rem'
+        }}>
+          Loading skills information...
+        </div>
       )
     },
     {
@@ -83,27 +93,6 @@ function App() {
           fontSize: '1.1rem'
         }}>
           Loading experience information...
-        </div>
-      )
-    },
-    {
-      id: 'skills',
-      label: 'Skills',
-      content: !isLoading && extendedProfile ? (
-        <SkillsTab
-          profile={extendedProfile}
-          styling={defaultTheme}
-        />
-      ) : (
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          height: '100%',
-          color: '#94A3B8',
-          fontSize: '1.1rem'
-        }}>
-          Loading skills information...
         </div>
       )
     },
@@ -163,11 +152,21 @@ function App() {
           alignItems: 'center',
           justifyContent: 'center',
           height: '100%',
-          color: '#94A3B8',
+          color: aiTheme.colors.textSecondary,
           fontSize: '1.1rem'
         }}>
           Loading contact information...
         </div>
+      )
+    },
+    {
+      id: 'profile',
+      label: 'Profile',
+      content: (
+        <ProfileOverview
+          profile={sampleProfileData}
+          styling={defaultTheme}
+        />
       )
     }
   ];
@@ -181,10 +180,10 @@ function App() {
       <style>{`
         @keyframes glow {
           from {
-            text-shadow: 0 0 20px ${aiTheme.colors.aiCyan}40, 0 0 30px ${aiTheme.colors.aiBlue}20, 0 0 40px ${aiTheme.colors.aiPurple}10;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
           }
           to {
-            text-shadow: 0 0 30px ${aiTheme.colors.aiCyan}60, 0 0 40px ${aiTheme.colors.aiBlue}30, 0 0 50px ${aiTheme.colors.aiPurple}20;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
           }
         }
         
@@ -194,8 +193,8 @@ function App() {
         }
         
         @keyframes pulse-border {
-          0%, 100% { border-color: ${aiTheme.glass.light}; }
-          50% { border-color: ${aiTheme.colors.aiBlue}40; }
+          0%, 100% { border-color: ${aiTheme.glass.border}; }
+          50% { border-color: rgba(255, 255, 255, 0.2); }
         }
         
         .ai-card {
@@ -236,15 +235,12 @@ function App() {
             textAlign: 'center'
           }}>
             <h1 style={{
-              fontSize: '2rem',
+              fontSize: '2.5rem',
               fontWeight: '700',
               margin: 0,
-              background: aiTheme.gradients.neural,
-              backgroundClip: 'text',
-              WebkitBackgroundClip: 'text',
-              color: 'transparent',
-              textShadow: `0 0 30px ${aiTheme.colors.aiCyan}40`,
-              animation: 'glow 2s ease-in-out infinite alternate'
+              color: '#FFFFFF',
+              letterSpacing: '-0.02em',
+              textShadow: '0 2px 10px rgba(0,0,0,0.5)'
             }}>
               {sampleProfileData.name}
             </h1>
@@ -283,14 +279,14 @@ function App() {
           }}>
             <TabNavigation
               tabs={tabs}
-              defaultActiveTab="profile"
+              defaultActiveTab="skills"
               onTabChange={handleTabChange}
             />
           </div>
         </div>
 
         {/* Floating Chat Bot Widget */}
-        <ChatBotWidget onChatOpen={handleChatOpen} />
+        <ChatBotWidget />
       </div>
     </>
   );

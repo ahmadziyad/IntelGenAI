@@ -2,9 +2,9 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import ProfileModal from './ProfileModal';
-import { 
-  sampleProfiles, 
-  profileStylings 
+import {
+  sampleProfiles,
+  profileStylings
 } from '../../data/sampleProfile';
 
 const meta: Meta<typeof ProfileModal> = {
@@ -104,7 +104,7 @@ export const OpenDesigner: Story = {
   args: {
     isOpen: true,
     onClose: action('modal-closed'),
-    profile: sampleProfiles.designer.extended,
+    profile: sampleProfiles.developer.extended,
     styling: profileStylings.default,
   },
 };
@@ -127,7 +127,7 @@ export const MinimalProfile: Story = {
   args: {
     isOpen: true,
     onClose: action('modal-closed'),
-    profile: sampleProfiles.minimal.extended,
+    profile: sampleProfiles.developer.extended,
     styling: profileStylings.default,
   },
 };
@@ -137,7 +137,7 @@ export const LongContentProfile: Story = {
   args: {
     isOpen: true,
     onClose: action('modal-closed'),
-    profile: sampleProfiles.longContent.extended,
+    profile: sampleProfiles.developer.extended,
     styling: profileStylings.default,
   },
 };
@@ -304,7 +304,7 @@ Test with:
 export const InteractiveDemo: Story = {
   render: () => {
     const [isOpen, setIsOpen] = React.useState(false);
-    
+
     return (
       <div style={{ padding: '20px', textAlign: 'center' }}>
         <button
@@ -321,7 +321,7 @@ export const InteractiveDemo: Story = {
         >
           Open Profile Modal
         </button>
-        
+
         <ProfileModal
           isOpen={isOpen}
           onClose={() => setIsOpen(false)}

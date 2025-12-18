@@ -1,70 +1,70 @@
-// Modern Dynamic AI Theme System
+// Modern Minimalistic Dark Theme System - Inspired by uxdesignerstockholm.se
 export const aiTheme = {
-  // Dynamic gradient backgrounds
+  // Refined gradients - more subtle, less neon
   gradients: {
-    primary: 'linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%)', // Blue to Purple
-    secondary: 'linear-gradient(135deg, #EC4899 0%, #F43F5E 100%)', // Pink to Rose
-    accent: 'linear-gradient(135deg, #06B6D4 0%, #3B82F6 100%)', // Cyan to Blue
-    neural: 'linear-gradient(135deg, #10B981 0%, #06B6D4 100%)', // Emerald to Cyan
-    quantum: 'linear-gradient(135deg, #8B5CF6 0%, #D946EF 100%)', // Purple to Fuchsia
-    cyber: 'linear-gradient(135deg, #F59E0B 0%, #F97316 100%)', // Amber to Orange
-    darkMesh: 'radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%)',
+    primary: 'linear-gradient(135deg, #FFFFFF 0%, #D1D5DB 100%)', // White to Gray 300
+    secondary: 'linear-gradient(135deg, #1F2937 0%, #111827 100%)', // Slate 800 to 950
+    accent: 'linear-gradient(135deg, #F9FAFB 0%, #E5E7EB 100%)', // Gray 50 to 200
+    neural: 'linear-gradient(135deg, #E5E7EB 0%, #9CA3AF 100%)', // Gray 200 to 400
+    quantum: 'linear-gradient(135deg, #FFFFFF 0%, #F3F4F6 100%)',
+    cyber: 'linear-gradient(135deg, #F9FAFB 0%, #D1D5DB 100%)',
+    darkMesh: 'radial-gradient(at 0% 0%, hsla(0,0%,5%,1) 0, transparent 50%), radial-gradient(at 50% 0%, hsla(0,0%,8%,1) 0, transparent 50%), radial-gradient(at 100% 0%, hsla(0,0%,0%,1) 0, transparent 50%)',
   },
 
-  // AI-inspired color palette
+  // High-contrast monochromatic color palette
   colors: {
-    // Base colors - Deeper, richer dark mode
-    background: '#0F172A', // Slate 900
-    surface: '#1E293B',    // Slate 800
-    surfaceHighlight: '#334155', // Slate 700
+    // Base colors - Extreme dark (uxdesignerstockholm.se background)
+    background: '#0D0D0D',
+    surface: '#171717',
+    surfaceHighlight: '#262626',
 
-    // Text colors
-    text: '#F8FAFC',       // Slate 50 (Brighter white)
-    textSecondary: '#E2E8F0', // Slate 200 (Much brighter grey)
-    textMuted: '#94A3B8',  // Slate 400 (Readable dimmed)
+    // Text colors - High contrast white and subtle greys
+    text: '#FFFFFF',
+    textSecondary: '#A3A3A3', // Neutral 400
+    textMuted: '#525252',  // Neutral 600
 
-    // AI accent colors - Brighter, neon-like
-    aiBlue: '#3B82F6',
-    aiPurple: '#8B5CF6',
-    aiCyan: '#06B6D4',
-    aiGreen: '#10B981',
-    aiPink: '#EC4899',
-    aiOrange: '#F97316',
+    // Minimalistic accent colors
+    aiBlue: '#FFFFFF',
+    aiPurple: '#E5E7EB',
+    aiCyan: '#D1D5DB',
+    aiGreen: '#F9FAFB',
+    aiPink: '#FFFFFF',
+    aiOrange: '#A3A3A3',
 
     // Status colors
-    success: '#10B981',
-    warning: '#F59E0B',
-    error: '#EF4444',
-    info: '#3B82F6',
+    success: '#FFFFFF',
+    warning: '#D1D5DB',
+    error: '#FFFFFF',
+    info: '#E5E7EB',
   },
 
-  // Glass morphism effects - Refined for better readability
+  // Minimalist glass effects - subtle borders, less blur
   glass: {
-    light: 'rgba(255, 255, 255, 0.05)',
-    medium: 'rgba(255, 255, 255, 0.1)',
-    heavy: 'rgba(15, 23, 42, 0.6)',
-    blur: 'blur(16px)',
-    border: 'rgba(255, 255, 255, 0.08)',
+    light: 'rgba(255, 255, 255, 0.03)',
+    medium: 'rgba(255, 255, 255, 0.05)',
+    heavy: 'rgba(0, 0, 0, 0.8)',
+    blur: 'blur(12px)',
+    border: 'rgba(255, 255, 255, 0.1)',
   },
 
-  // Dynamic shadows
+  // Refined, more subtle shadows
   shadows: {
-    glow: '0 0 20px rgba(59, 130, 246, 0.5)',
-    aiGlow: '0 0 30px rgba(139, 92, 246, 0.6)',
-    neon: '0 0 10px rgba(6, 182, 212, 0.7), 0 0 20px rgba(6, 182, 212, 0.4)',
-    elevation: '0 10px 30px -10px rgba(0, 0, 0, 0.5)',
-    floating: '0 20px 40px -10px rgba(0, 0, 0, 0.6)',
+    glow: '0 0 15px rgba(255, 255, 255, 0.1)',
+    aiGlow: '0 0 20px rgba(255, 255, 255, 0.15)',
+    neon: '0 0 5px rgba(255, 255, 255, 0.2)',
+    elevation: '0 10px 30px -10px rgba(0, 0, 0, 0.7)',
+    floating: '0 20px 40px -10px rgba(0, 0, 0, 0.8)',
   },
 
-  // Animation configurations
+  // Smooth animation configurations
   animations: {
     duration: {
-      fast: '0.2s',
-      normal: '0.4s',
-      slow: '0.7s',
+      fast: '0.15s',
+      normal: '0.35s',
+      slow: '0.6s',
     },
     easing: {
-      smooth: 'cubic-bezier(0.4, 0, 0.2, 1)',
+      smooth: 'cubic-bezier(0.16, 1, 0.3, 1)', // Quintic out for premium feel
       bounce: 'cubic-bezier(0.34, 1.56, 0.64, 1)',
     },
   },
@@ -79,22 +79,23 @@ export const aiTheme = {
     xxl: '3rem',
   },
 
-  // Border radius
+  // Sharp border radius for a more professional look
   borderRadius: {
-    sm: '0.5rem',
-    md: '0.75rem',
-    lg: '1rem',
-    xl: '1.5rem',
+    sm: '0.25rem',
+    md: '0.5rem',
+    lg: '0.75rem',
+    xl: '1rem',
     full: '9999px',
   },
 
-  // Typography
+  // Typography - Manrope/Inter as used on the reference site
   typography: {
     fontFamily: {
-      primary: '"Outfit", "Inter", sans-serif',
+      primary: '"Manrope", "Inter", -apple-system, sans-serif',
       mono: '"Fira Code", monospace',
     },
     fontWeight: {
+      light: 300,
       normal: 400,
       medium: 500,
       semibold: 600,

@@ -213,16 +213,16 @@ const IntelGenDemo: React.FC<IntelGenDemoProps> = ({ onChatOpen }) => {
         {showWelcome && (
           <WelcomeMessage>
             <h3>Welcome to IntelGenAI!</h3>
-            <p>The chat assistant will open shortly to help you get started...</p>
+            <p>The chat interface will open shortly to help you get started...</p>
           </WelcomeMessage>
         )}
 
         <ContentCard>
-          <h2>IntelGenAI Chat Assistant</h2>
+          <h2>IntelGenAI Chat</h2>
           <p>
-            Welcome to IntelGenAI - your intelligent generation AI assistant! The chat widget
+            Welcome to IntelGenAI - your intelligent generation AI companion! The chat widget
             features responsive design, message display, input validation, and configuration
-            system. Try interacting with the chat assistant in the bottom-right corner!
+            system. Try interacting with the chat interface in the bottom-right corner!
           </p>
 
           <ConfigSection>
@@ -312,7 +312,7 @@ const IntelGenDemo: React.FC<IntelGenDemoProps> = ({ onChatOpen }) => {
           onMessage={handleMessage}
           onConfigChange={handleConfigChange}
           autoOpen={shouldAutoOpenChat}
-          welcomeMessage="Welcome to IntelGen! I'm your AI assistant. How can I help you today?"
+          welcomeMessage="Welcome to IntelGen! I'm your AI companion. How can I help you today?"
         />
       </ChatWidgetContainer>
     </DemoContainer>

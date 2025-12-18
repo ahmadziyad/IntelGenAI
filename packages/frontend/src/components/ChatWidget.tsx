@@ -144,7 +144,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
-  const [sessionId] = useState(() => generateId());
+  const [sessionId, setSessionId] = useState<string>('');
   const [isLoading, setIsLoading] = useState(false);
   const widgetRef = useRef<HTMLDivElement>(null);
   const { speak } = useSpeech();
@@ -160,12 +160,33 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({
   }, [autoOpen]);
 
   useEffect(() => {
+    // Initialize session when widget opens
+    const initSession = async () => {
+      if (isOpen && !sessionId) {
+        try {
+          const response = await fetch('http://localhost:3001/api/chat/sessions', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ userId: 'user-1' })
+          });
+          const result = await response.json();
+          if (result.success) {
+            setSessionId(result.data.sessionId);
+          }
+        } catch (error) {
+          console.error('Failed to initialize chat session:', error);
+        }
+      }
+    };
+
+    initSession();
+
     // Add welcome message when widget first opens
     if (isOpen && messages.length === 0) {
-      const defaultWelcome = "Hello! I'm here to help you with any questions you might have. How can I assist you today?";
+      const defaultWelcome = "Hello! I'm here to help you with any questions about Ahmad Ziyad's profile, skills, or experience. How can I assist you today?";
       const welcomeMsg: Message = {
         id: generateId(),
-        sessionId,
+        sessionId: sessionId || 'temp',
         content: welcomeMessage || defaultWelcome,
         type: 'assistant',
         timestamp: new Date(),
@@ -202,29 +223,35 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({
         onMessage(content.trim());
       }
 
-      // Simulate assistant response for now (will be replaced with actual API call)
-      setTimeout(() => {
-        const assistantMessage: Message = {
-          id: generateId(),
+      // Call the real API
+      const response = await fetch('http://localhost:3001/api/chat/message', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
           sessionId,
-          content: "Thank you for your message. I'm processing your request and will provide a helpful response shortly.",
-          type: 'assistant',
-          timestamp: new Date(),
-          metadata: {
-            intent: 'acknowledgment',
-            confidence: 0.9,
-            processingTime: 1000
-          }
+          message: content.trim()
+        })
+      });
+
+      const result = await response.json();
+
+      if (result.success && result.data.message) {
+        const assistantMessage: Message = {
+          ...result.data.message,
+          timestamp: new Date(result.data.message.timestamp)
         };
+
         setMessages(prev => [...prev, assistantMessage]);
 
         // Speak the response if voice is enabled
         if (mergedConfig.voiceEnabled) {
           speak(assistantMessage.content);
         }
+      } else {
+        throw new Error(result.error || 'Failed to get response from AI');
+      }
 
-        setIsLoading(false);
-      }, 1000);
+      setIsLoading(false);
     } catch (error) {
       console.error('Error sending message:', error);
       const errorMessage: Message = {
@@ -273,7 +300,7 @@ const ChatWidget: React.FC<ChatWidgetProps> = ({
       {isOpen && (
         <>
           <ChatHeader $primaryColor={styling.primaryColor}>
-            Chat Assistant
+            Chat
           </ChatHeader>
 
           <ChatBody>

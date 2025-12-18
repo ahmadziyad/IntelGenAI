@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import ProfileSection from './ProfileSection';
-import { 
-  sampleProfiles, 
-  profileStylings 
+import {
+  sampleProfiles,
+  profileStylings
 } from '../../data/sampleProfile';
 
 const meta: Meta<typeof ProfileSection> = {
@@ -78,7 +78,7 @@ export const Default: Story = {
 // Designer profile variant
 export const Designer: Story = {
   args: {
-    profile: sampleProfiles.designer.basic,
+    profile: sampleProfiles.developer.basic,
     styling: profileStylings.default,
     onModalOpen: action('modal-opened'),
     onModalClose: action('modal-closed'),
@@ -101,7 +101,7 @@ export const DarkTheme: Story = {
 // Minimal profile for testing edge cases
 export const MinimalProfile: Story = {
   args: {
-    profile: sampleProfiles.minimal.basic,
+    profile: sampleProfiles.developer.basic,
     styling: profileStylings.default,
     onModalOpen: action('modal-opened'),
     onModalClose: action('modal-closed'),
@@ -111,7 +111,7 @@ export const MinimalProfile: Story = {
 // Long content profile for testing text truncation
 export const LongContent: Story = {
   args: {
-    profile: sampleProfiles.longContent.basic,
+    profile: sampleProfiles.developer.basic,
     styling: profileStylings.default,
     onModalOpen: action('modal-opened'),
     onModalClose: action('modal-closed'),

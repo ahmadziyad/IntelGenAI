@@ -98,7 +98,7 @@ const MessageItem: React.FC<MessageItemProps> = ({ message, primaryColor }) => {
       case 'user':
         return 'You';
       case 'assistant':
-        return 'Assistant';
+        return 'AI';
       case 'system':
         return 'System';
       default:
