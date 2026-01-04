@@ -81,9 +81,9 @@ const CertificationCard = styled.div<{ theme: ProfileStyling; $currentTheme: any
   }
 `;
 
-const CertificationLogo = styled.img`
-  width: 100px;
-  height: 100px;
+const CertificationLogo = styled.img<{ issuer?: string }>`
+  width: ${props => props.issuer === 'Oracle' ? '140px' : '100px'};
+  height: ${props => props.issuer === 'Oracle' ? '140px' : '100px'};
   object-fit: contain;
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.1);
@@ -91,8 +91,8 @@ const CertificationLogo = styled.img`
   flex-shrink: 0;
   
   @media (max-width: 768px) {
-    width: 80px;
-    height: 80px;
+    width: ${props => props.issuer === 'Oracle' ? '110px' : '80px'};
+    height: ${props => props.issuer === 'Oracle' ? '110px' : '80px'};
   }
 `;
 
@@ -153,7 +153,7 @@ const DateBadge = styled.span`
 
 const CertificationsTab: React.FC<CertificationsTabProps> = ({ profile, styling }) => {
   const { theme } = useTheme();
-  
+
   if (!profile.certifications || profile.certifications.length === 0) {
     return (
       <TabContainer>
@@ -189,6 +189,7 @@ const CertificationsTab: React.FC<CertificationsTabProps> = ({ profile, styling 
               <CertificationLogo
                 src={cert.logo}
                 alt={`${cert.issuer} logo`}
+                issuer={cert.issuer}
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
                   target.style.display = 'none';

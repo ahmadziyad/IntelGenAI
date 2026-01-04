@@ -130,7 +130,7 @@ npm run setup            # Complete development setup
    - Monitoring & Observability (Prometheus, Grafana, Dynatrace, Splunk)
 
 2. **Experience Tab**
-   - Senior Software Engineer/Architect roles
+   - AI Software Engineer/Architect roles
    - Enterprise-level project experience
    - Leadership and mentorship background
 
@@ -265,4 +265,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Built with ❤️ by Ahmad Ziyad** | **Senior Software Engineer/Architect**
+**Built with ❤️ by Ahmad Ziyad** | **AI Software Engineer/Architect**

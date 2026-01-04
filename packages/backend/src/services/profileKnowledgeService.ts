@@ -13,13 +13,13 @@ export class ProfileKnowledgeService {
             {
                 category: 'faq',
                 question: 'Who is Ahmad Ziyad?',
-                answer: 'Ahmad Ziyad is a Senior Software Engineer/Architect with over 13 years of experience. He specializes in designing, building, and scaling end-to-end enterprise applications using React, Python, and AWS cloud-native technologies. He has strong expertise in RESTful/event-driven APIs and multi-agent RAG systems.',
+                answer: 'Ahmad Ziyad is a AI Software Engineer/Architect with over 13 years of experience. He specializes in designing, building, and scaling end-to-end enterprise applications using React, Python, and AWS cloud-native technologies. He has strong expertise in RESTful/event-driven APIs and multi-agent RAG systems.',
                 keywords: ['ahmad ziyad', 'who is', 'background', 'profile', 'experience']
             },
             {
                 category: 'faq',
                 question: 'What is Ahmad Ziyad\'s current role?',
-                answer: 'Ahmad is currently a Senior Software Engineer at Royal Cyber Inc. (since August 2022), where he delivers enterprise applications using Python, FastAPI, and React. He has significantly reduced decisioning cycle times by 40-70% through AI-driven automation and RAG systems.',
+                answer: 'Ahmad is currently a AI Software Engineer at Royal Cyber Inc. (since August 2022), where he delivers enterprise applications using Python, FastAPI, and React. He has significantly reduced decisioning cycle times by 40-70% through AI-driven automation and RAG systems.',
                 keywords: ['current role', 'company', 'royal cyber', 'position', 'job']
             },
 
@@ -41,7 +41,7 @@ export class ProfileKnowledgeService {
             {
                 category: 'faq',
                 question: 'Tell me about Ahmad Ziyad\'s professional experience',
-                answer: 'Ahmad has held several senior roles:\n1. Senior Software Engineer at Royal Cyber Inc. (AWS, Python, AI/ML)\n2. Program Delivery Manager at Arab Bank (AWS, Python, CI/CD)\n3. Senior Software Consultant at I2S Business Solutions (Agile, Product Management)\n4. Senior Consultant at HCL Technologies (IBM BPM/WODM)\n5. Programming Analyst at Cognizant (Process Automation)',
+                answer: 'Ahmad has held several senior roles:\n1. AI Software Engineer at Royal Cyber Inc. (AWS, Python, AI/ML)\n2. Program Delivery Manager at Arab Bank (AWS, Python, CI/CD)\n3. AI Software Consultant at I2S Business Solutions (Agile, Product Management)\n4. Senior Consultant at HCL Technologies (IBM BPM/WODM)\n5. Programming Analyst at Cognizant (Process Automation)',
                 keywords: ['experience', 'work history', 'career', 'past roles', 'companies', 'arab bank', 'hcl', 'cognizant']
             },
 

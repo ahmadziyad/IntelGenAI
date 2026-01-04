@@ -5,7 +5,7 @@ import { ProfileData, ExtendedProfileData, ProfileStyling } from '../types/profi
 export const sampleProfileData: ProfileData = {
   id: 'sample-profile-1',
   name: 'Ahmad Ziyad',
-  title: 'Senior Software Engineer/Architect',
+  title: 'AI Software Engineer/Architect',
   description: 'Accomplished AI Software Engineer and enterprise solution architect with 13+ years of experience designing, building, and scaling end-to-end enterprise applications across cloud-native and hybrid environments. Proven expertise in developing intelligent automation solutions using Python, AWS, and cutting-edge AI/ML technologies including RAG-based applications, multi-agent workflows, and LLM integrations. Led modernization initiatives that reduced processing times by 40-70% while ensuring regulatory compliance and enterprise security. Expert in microservices architecture, event-driven systems, and DevOps practices with hands-on leadership in AWS cloud transformations, containerized deployments, and data pipeline optimization. Strong advocate of Agile delivery methodologies with demonstrated success in cross-functional team leadership, stakeholder management, and delivering mission-critical solutions for Fortune 500 clients in financial services, insurance, and banking sectors.',
   image: {
     src: '/profile.jpg',
@@ -58,7 +58,7 @@ export const sampleExtendedProfileData: ExtendedProfileData = {
       technologies: ['Python', 'TensorFlow', 'Keras', 'RAG', 'MemCached', 'AWS', 'Glue', 'Redshift', 'Microservices', 'FastAPI', 'REST', 'SOAP', 'Docker', 'Kubernetes', 'Git', 'Data Pipelines', 'oAuth', 'DynamoDB', 'Vector databases', 'Embedding models', 'Strand Agents SDK', 'MCP', 'Agentic AI', 'Prometheus', 'Grafana', 'Dynatrace'],
     },
     {
-      id: 'exp-3',
+      id: 'exp-2',
       company: 'Arab Bank',
       position: 'IT Senior Developer',
       duration: 'May 2018 - June 2021',
@@ -67,7 +67,7 @@ export const sampleExtendedProfileData: ExtendedProfileData = {
       technologies: ['Python', 'Data Modeling', 'System Architecture', 'Microservices', 'REST/ OpenAPI', 'Event-Driven Design', 'Systems Integration', 'DB2', 'Oracle', 'SOA', 'Jira', 'Splunk'],
     },
     {
-      id: 'exp-4',
+      id: 'exp-3',
       company: 'I2S Business Solutions',
       position: 'Senior Software Consultant',
       duration: 'October 2016 - May 2018',
@@ -76,7 +76,7 @@ export const sampleExtendedProfileData: ExtendedProfileData = {
       technologies: ['Java', 'Python', 'WODM', 'AS400', 'IBM Integrations', 'DataPower', 'Message Queue', 'DB2', 'Oracle'],
     },
     {
-      id: 'exp-5',
+      id: 'exp-4',
       company: 'HCL Technologies',
       position: 'Senior Consultant',
       duration: 'December 2014 - August 2016',
@@ -85,7 +85,7 @@ export const sampleExtendedProfileData: ExtendedProfileData = {
       technologies: ['Java', 'IBM BAW', 'WODM', 'Integration Designer', 'DB2', 'Oracle'],
     },
     {
-      id: 'exp-6',
+      id: 'exp-5',
       company: 'Cognizant Technology Solutions',
       position: 'Programming Analyst',
       duration: 'September 2011 - December 2014',
@@ -107,7 +107,7 @@ export const sampleExtendedProfileData: ExtendedProfileData = {
       proficiency: 'expert',
       description: 'Expert in AWS cloud-native solutions with hands-on experience in serverless architectures, containerization, and infrastructure as code. Led multiple cloud transformation initiatives, implementing robust CI/CD pipelines and comprehensive monitoring solutions.'
     },
-     {
+    {
       category: 'AI, ML & Intelligent Automation',
       skills: ['TensorFlow', 'PyTorch', 'Keras', 'Hugging Face', 'OpenAI', 'Claude', 'Gemini', 'Amazon Bedrock', 'SageMaker AI', 'Nvidia NIM', 'RAG-based Applications', 'LangChain', 'MLOps', 'Embedding Models', 'Vector Databases', 'Strand Agents SDK', 'MCP', 'A2A', 'Workflow Orchestration', 'Intelligent Process Automation'],
       proficiency: 'expert',
@@ -153,14 +153,22 @@ export const sampleExtendedProfileData: ExtendedProfileData = {
   projects: [
     {
       id: 'proj-1',
-      name: 'IntelGenAI Platform',
-      description: 'A modular generative AI platform with agent capabilities.',
-      technologies: ['React', 'Node.js', 'LangChain'],
-      link: 'https://github.com/intelgenai/platform',
-      image: '/projects/intelgen.jpg'
+      name: 'NASA MCP Server',
+      description: 'A practical tutorial for building Model Context Protocol (MCP) servers using NASA\'s public APIs. Demonstrates MCP server architecture, API integration, authentication handling, and integration with AI assistants like Claude Desktop. Features tools for accessing NASA\'s Astronomy Picture of the Day and image search capabilities.',
+      technologies: ['TypeScript', 'Node.js', 'MCP SDK', 'NASA APIs', 'Claude Desktop Integration', 'REST APIs'],
+      link: 'https://github.com/ahmadziyad/NASA-MCP-Demo',
+      image: '/projects/nasa-mcp.jpg'
     },
     {
       id: 'proj-2',
+      name: 'Voice Calculator',
+      description: 'Prompt-Based Calculator with dual interface - Use traditional calculator buttons or natural language chat commands. Features real-time synchronization between interfaces, NLP-powered calculation parsing (e.g., "Add 5 and 10"), and a FastAPI backend for high-performance computation. Modern responsive design with dark theme.',
+      technologies: ['Python', 'FastAPI', 'Uvicorn', 'HTML5', 'CSS3', 'JavaScript', 'NLP'],
+      link: 'https://github.com/ahmadziyad/VoiceCalculator',
+      image: '/projects/voice-calculator.jpg'
+    },
+    {
+      id: 'proj-3',
       name: 'IntelGen Studio',
       description: 'Interactive AI chat interface with advanced conversation capabilities, real-time responses, and intelligent context management.',
       technologies: ['React', 'TypeScript', 'WebSocket', 'AI/ML APIs'],
@@ -168,7 +176,7 @@ export const sampleExtendedProfileData: ExtendedProfileData = {
       image: '/projects/studio.jpg'
     },
     {
-      id: 'proj-3',
+      id: 'proj-4',
       name: 'Pet Adoptions',
       description: 'Smart Pet Adoption Platform - A comprehensive web application that connects pet lovers with adoptable animals. Features advanced search filters, pet matching algorithms, adoption application management, and real-time messaging between adopters and shelters.',
       technologies: ['React', 'Node.js', 'MongoDB', 'Express.js', 'Socket.io', 'JWT Authentication', 'Cloudinary', 'Material-UI'],
@@ -176,7 +184,7 @@ export const sampleExtendedProfileData: ExtendedProfileData = {
       image: '/projects/pet-adoptions.jpg'
     },
     {
-      id: 'proj-4',
+      id: 'proj-5',
       name: 'HealthcareTrial',
       description: 'Healthcare Management System - A comprehensive healthcare platform designed to streamline patient management, appointment scheduling, and medical record keeping. Features secure patient data handling, doctor-patient communication, and integrated billing systems.',
       technologies: ['React', 'Node.js', 'Express.js', 'MongoDB', 'JWT Authentication', 'Material-UI', 'Chart.js', 'Socket.io'],
@@ -184,7 +192,7 @@ export const sampleExtendedProfileData: ExtendedProfileData = {
       image: '/projects/healthcare-trial.jpg'
     },
     {
-      id: 'proj-5',
+      id: 'proj-6',
       name: 'Property Risk Insight',
       description: 'Property Risk Assessment Platform - An intelligent system for analyzing and evaluating property investment risks. Features comprehensive risk scoring algorithms, market trend analysis, financial projections, and detailed property assessment reports for informed investment decisions.',
       technologies: ['React', 'Node.js', 'Python', 'Machine Learning', 'TensorFlow', 'MongoDB', 'Express.js', 'Chart.js', 'Material-UI'],
@@ -192,7 +200,7 @@ export const sampleExtendedProfileData: ExtendedProfileData = {
       image: '/projects/property-risk-insight.jpg'
     },
     {
-      id: 'proj-6',
+      id: 'proj-7',
       name: 'Property Title Chain',
       description: 'Blockchain-based Property Title Management - A secure and transparent property title tracking system using blockchain technology. Features immutable title records, ownership verification, transaction history tracking, and smart contract integration for property transfers.',
       technologies: ['React', 'Node.js', 'Blockchain', 'Ethereum', 'Solidity', 'Web3.js', 'MongoDB', 'Express.js', 'Material-UI'],
@@ -217,79 +225,79 @@ export const sampleExtendedProfileData: ExtendedProfileData = {
     },
   ],
   certifications: [
-  {
-    id: 'cert-1',
-    name: 'AWS Certified Solutions Architect – Associate',
-    issuer: 'Amazon Web Services',
-    date: '2025 - 2028',
-    link: 'https://www.credly.com/badges/434e0060-decf-4004-a203-b348ce45bc3a',
-    logo: 'https://images.credly.com/size/680x680/images/0e284c3f-5164-4b21-8660-0d84737941bc/image.png'
-  },
-  {
-    id: 'cert-2',
-    name: 'Certified AI Practitioner - AWS',
-    issuer: 'Amazon Web Services',
-    date: '2025 - 2028',
-    link: 'https://www.credly.com/badges/7ce75189-ba1e-41e9-9838-58eebba0cf45',
-    logo: 'https://images.credly.com/size/680x680/images/4d4693bb-530e-4bca-9327-de07f3aa2348/image.png'
-  },
-  {
-    id: 'cert-3',
-    name: 'OCI Certified Generative AI Professional',
-    issuer: 'Oracle',
-    date: '2025 - 2027',
-    link: 'https://catalog-education.oracle.com/ords/certview/sharebadge?id=81D1A41B779031CF40494CCD0223D4BE774A703453A326F142DB88EE7D1D0615',
-    logo: 'https://brm-workforce.oracle.com/pdf/certview/images/OCI25GAIOCP.png'
-  },
-  {
-    id: 'cert-4',
-    name: 'Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate',
-    issuer: 'Oracle',
-    date: '2025 - 2027',
-    link: 'https://catalog-education.oracle.com/ords/certview/sharebadge?id=6A420C1195839CAC3BB2C6EAB86497DB487D265E80EBD0FEC24A7C552E733D0E',
-    logo: 'https://brm-workforce.oracle.com/pdf/certview/images/OCI25AICFAV1.png'
-  },
-  {
-    id: 'cert-5',
-    name: 'Agile Certified Practitioner (PMI-ACP)',
-    issuer: 'Project Management Institute',
-    date: '2024 - 2027',
-    link: 'https://www.credly.com/badges/f89f5539-ee69-48db-9570-b0e0395c4a59',
-    logo: 'https://images.credly.com/size/680x680/images/884f1605-f439-4b0d-ba7c-76a921266d45/blob'
-  },
-  {
-    id: 'cert-6',
-    name: 'Building LLM Applications with Prompt Engineering',
-    issuer: 'NVIDIA',
-    date: '2024 - Present',
-    link: 'https://learn.nvidia.com/certificates?id=4KjzEb0YSM653L_-U8bLRA#',
-    logo: 'https://learn.nvidia.com/img/nvidia_logo.svg'
-  },
-  {
-    id: 'cert-7',
-    name: 'Enterprise Design Thinking Co-Creator',
-    issuer: 'IBM',
-    date: '2024 - Present',
-    link: 'https://www.credly.com/badges/cd6b3d67-5382-4359-89fa-784b5e257f7b',
-    logo: 'https://images.credly.com/size/680x680/images/2700b813-82b8-4232-9b36-5dcd5cd24584/Badges_v8-08_Co-Creator.png'
-  },
-  {
-    id: 'cert-8',
-    name: 'Project Management Professional (PMP)',
-    issuer: 'Project Management Institute',
-    date: '2024 - 2027',
-    link: 'https://www.credly.com/badges/4fd2c3d0-1a02-4c1b-915c-8d685f8ff265',
-    logo: 'https://images.credly.com/size/680x680/images/731e7ef4-9b0c-4d7b-ab65-23cc699c0aa3/blob'
-  },
-  {
-    id: 'cert-9',
-    name: 'Azure Fundamentals',
-    issuer: 'Microsoft',
-    date: '2024 - Present',
-    link: 'https://www.credly.com/badges/f89faaf1-990d-4256-9e37-2583e5691eb0',
-    logo: 'https://images.credly.com/size/680x680/images/be8fcaeb-c769-4858-b567-ffaaa73ce8cf/image.png'
-  }
-],
+    {
+      id: 'cert-1',
+      name: 'AWS Certified Solutions Architect – Associate',
+      issuer: 'Amazon Web Services',
+      date: '2025 - 2028',
+      link: 'https://www.credly.com/badges/434e0060-decf-4004-a203-b348ce45bc3a',
+      logo: 'https://images.credly.com/size/680x680/images/0e284c3f-5164-4b21-8660-0d84737941bc/image.png'
+    },
+    {
+      id: 'cert-2',
+      name: 'Certified AI Practitioner - AWS',
+      issuer: 'Amazon Web Services',
+      date: '2025 - 2028',
+      link: 'https://www.credly.com/badges/7ce75189-ba1e-41e9-9838-58eebba0cf45',
+      logo: 'https://images.credly.com/size/680x680/images/4d4693bb-530e-4bca-9327-de07f3aa2348/image.png'
+    },
+    {
+      id: 'cert-3',
+      name: 'OCI Certified Generative AI Professional',
+      issuer: 'Oracle',
+      date: '2025 - 2027',
+      link: 'https://catalog-education.oracle.com/ords/certview/sharebadge?id=81D1A41B779031CF40494CCD0223D4BE774A703453A326F142DB88EE7D1D0615',
+      logo: 'https://brm-workforce.oracle.com/pdf/certview/images/OCI25GAIOCP.png'
+    },
+    {
+      id: 'cert-4',
+      name: 'Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate',
+      issuer: 'Oracle',
+      date: '2025 - 2027',
+      link: 'https://catalog-education.oracle.com/ords/certview/sharebadge?id=6A420C1195839CAC3BB2C6EAB86497DB487D265E80EBD0FEC24A7C552E733D0E',
+      logo: 'https://brm-workforce.oracle.com/pdf/certview/images/OCI25AICFAV1.png'
+    },
+    {
+      id: 'cert-5',
+      name: 'Agile Certified Practitioner (PMI-ACP)',
+      issuer: 'Project Management Institute',
+      date: '2024 - 2027',
+      link: 'https://www.credly.com/badges/f89f5539-ee69-48db-9570-b0e0395c4a59',
+      logo: 'https://images.credly.com/size/680x680/images/884f1605-f439-4b0d-ba7c-76a921266d45/blob'
+    },
+    {
+      id: 'cert-6',
+      name: 'Building LLM Applications with Prompt Engineering',
+      issuer: 'NVIDIA',
+      date: '2024 - Present',
+      link: 'https://learn.nvidia.com/certificates?id=4KjzEb0YSM653L_-U8bLRA#',
+      logo: 'https://learn.nvidia.com/img/nvidia_logo.svg'
+    },
+    {
+      id: 'cert-7',
+      name: 'Enterprise Design Thinking Co-Creator',
+      issuer: 'IBM',
+      date: '2024 - Present',
+      link: 'https://www.credly.com/badges/cd6b3d67-5382-4359-89fa-784b5e257f7b',
+      logo: 'https://images.credly.com/size/680x680/images/2700b813-82b8-4232-9b36-5dcd5cd24584/Badges_v8-08_Co-Creator.png'
+    },
+    {
+      id: 'cert-8',
+      name: 'Project Management Professional (PMP)',
+      issuer: 'Project Management Institute',
+      date: '2024 - 2027',
+      link: 'https://www.credly.com/badges/4fd2c3d0-1a02-4c1b-915c-8d685f8ff265',
+      logo: 'https://images.credly.com/size/680x680/images/731e7ef4-9b0c-4d7b-ab65-23cc699c0aa3/blob'
+    },
+    {
+      id: 'cert-9',
+      name: 'Azure Fundamentals',
+      issuer: 'Microsoft',
+      date: '2024 - Present',
+      link: 'https://www.credly.com/badges/f89faaf1-990d-4256-9e37-2583e5691eb0',
+      logo: 'https://images.credly.com/size/680x680/images/be8fcaeb-c769-4858-b567-ffaaa73ce8cf/image.png'
+    }
+  ],
 };
 
 // Default styling configuration
