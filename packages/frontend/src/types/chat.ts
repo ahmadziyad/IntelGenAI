@@ -1,4 +1,4 @@
-// Chat-related type definitions (extracted from shared package for deployment compatibility)
+// Chat-related type definitions (local types to avoid shared package dependency)
 
 export interface Message {
   id: string;
