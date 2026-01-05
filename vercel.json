@@ -16,7 +16,7 @@
       "dest": "packages/frontend/$1"
     }
   ],
-  "buildCommand": "cd packages/frontend && npm run build",
+  "buildCommand": "npm run build:frontend",
   "devCommand": "cd packages/frontend && npm start",
   "installCommand": "npm install",
   "outputDirectory": "packages/frontend/build"
