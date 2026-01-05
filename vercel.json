@@ -1,23 +1,13 @@
 {
   "name": "ahmad-ziyad-portfolio",
   "version": 2,
-  "builds": [
-    {
-      "src": "packages/frontend/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "build"
-      }
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "packages/frontend/$1"
-    }
-  ],
   "buildCommand": "npm run build:frontend",
-  "devCommand": "cd packages/frontend && npm start",
+  "outputDirectory": "packages/frontend/build",
   "installCommand": "npm install",
-  "outputDirectory": "packages/frontend/build"
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
 }
