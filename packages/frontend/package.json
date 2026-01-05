@@ -19,7 +19,6 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
-    "@intelligenai/shared": "^1.0.0",
     "@types/styled-components": "^5.1.34",
     "axios": "^1.6.2",
     "framer-motion": "^12.23.26",
