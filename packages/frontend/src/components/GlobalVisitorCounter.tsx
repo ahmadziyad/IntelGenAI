@@ -15,6 +15,7 @@ const CounterContainer = styled(motion.div)<{ $theme: any }>`
   box-shadow: ${props => props.$theme.shadows.elevation};
   position: relative;
   overflow: hidden;
+  min-width: 0; /* Allow shrinking */
   
   &::before {
     content: '';
@@ -35,6 +36,12 @@ const CounterContainer = styled(motion.div)<{ $theme: any }>`
   @media (max-width: 768px) {
     padding: 0.25rem 0.5rem;
     gap: 0.25rem;
+    min-width: 0;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 0.2rem 0.4rem;
+    gap: 0.2rem;
   }
 `;
 
@@ -66,9 +73,14 @@ const CounterLabel = styled.span<{ $theme: any }>`
   font-weight: 500;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  white-space: nowrap;
   
   @media (max-width: 768px) {
     font-size: 0.6rem;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 0.55rem;
   }
 `;
 
@@ -78,9 +90,14 @@ const CounterNumber = styled(motion.span)<{ $theme: any }>`
   color: ${props => props.$theme.colors.text};
   font-family: 'Courier New', monospace;
   letter-spacing: 0.5px;
+  white-space: nowrap;
   
   @media (max-width: 768px) {
     font-size: 0.8rem;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 0.75rem;
   }
 `;
 

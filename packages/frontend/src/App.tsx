@@ -185,10 +185,50 @@ function App() {
         
         body {
           margin: 0;
-          overflow: hidden;
+          padding: 0;
           background: ${theme.colors.background};
           color: ${theme.colors.text};
           font-family: ${theme.typography.fontFamily.primary};
+          overflow-x: hidden;
+          min-height: 100vh;
+          min-height: 100dvh;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+        }
+        
+        * {
+          box-sizing: border-box;
+        }
+        
+        html {
+          scroll-behavior: smooth;
+        }
+        
+        /* Prevent horizontal scrolling on mobile */
+        html, body {
+          max-width: 100vw;
+          overflow-x: hidden;
+        }
+        
+        /* Improve mobile touch targets */
+        @media (max-width: 768px) {
+          body {
+            font-size: 14px;
+            -webkit-text-size-adjust: 100%;
+          }
+          
+          /* Ensure minimum touch target size */
+          button, a, [role="button"] {
+            min-height: 44px;
+            min-width: 44px;
+          }
+        }
+        
+        /* Handle very small screens */
+        @media (max-width: 480px) {
+          body {
+            font-size: 13px;
+          }
         }
       `}</style>
 
@@ -197,27 +237,25 @@ function App() {
       <div style={{
         display: 'flex',
         flexDirection: 'column',
-        height: '100vh',
         minHeight: '100dvh',
-        overflow: 'hidden',
         position: 'relative',
         zIndex: 1
       }}>
-        {/* Header Section - Simple heading/label only */}
-        <div style={{
-          height: '10vh',
-          minHeight: '60px',
-          maxHeight: '80px',
+        {/* Header Section - Responsive header */}
+        <header style={{
+          flexShrink: 0,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          padding: '0 1rem'
+          padding: '1rem',
+          minHeight: '80px',
+          maxHeight: '120px'
         }}>
           <div style={{
             textAlign: 'center'
           }}>
             <h1 style={{
-              fontSize: '2.5rem',
+              fontSize: 'clamp(1.5rem, 4vw, 2.5rem)',
               fontWeight: '700',
               margin: 0,
               color: theme.colors.text,
@@ -227,7 +265,7 @@ function App() {
               {sampleProfileData.name}
             </h1>
             <p style={{
-              fontSize: '1rem',
+              fontSize: 'clamp(0.8rem, 2vw, 1rem)',
               color: theme.colors.textSecondary,
               margin: '0.25rem 0 0 0',
               fontWeight: '500',
@@ -236,16 +274,16 @@ function App() {
               {sampleProfileData.title}
             </p>
           </div>
-        </div>
+        </header>
 
-        {/* Tabs Section - Adjusted height to leave space for bottom footer */}
-        <div style={{
-          height: '85vh',
-          maxHeight: '85vh',
-          overflow: 'hidden',
+        {/* Main Content Area - Flexible height */}
+        <main style={{
+          flex: 1,
           display: 'flex',
           flexDirection: 'column',
-          padding: '0 0.5rem 0 0.5rem'
+          padding: '0 0.5rem',
+          minHeight: 0, // Important for flex child to shrink
+          overflow: 'hidden'
         }}>
           <div style={{
             background: theme.glass.medium,
@@ -253,11 +291,12 @@ function App() {
             borderRadius: theme.borderRadius.xl,
             border: `1px solid ${theme.glass.light}`,
             boxShadow: theme.shadows.elevation,
-            height: '100%',
-            overflow: 'hidden',
+            flex: 1,
             display: 'flex',
             flexDirection: 'column',
-            position: 'relative'
+            position: 'relative',
+            minHeight: 0, // Important for flex child to shrink
+            overflow: 'hidden'
           }}>
             <TabNavigation
               tabs={tabs}
@@ -265,22 +304,24 @@ function App() {
               onTabChange={handleTabChange}
             />
           </div>
-        </div>
+        </main>
 
-        {/* Bottom Footer - Visitor Counter and Theme Dropdown */}
-        <div style={{
-          height: '5vh',
-          minHeight: '40px',
+        {/* Bottom Footer - Fixed height with responsive padding */}
+        <footer style={{
+          flexShrink: 0,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          padding: '0 1rem',
+          padding: 'clamp(0.5rem, 2vw, 1rem)',
+          minHeight: '60px',
+          gap: '1rem',
           position: 'relative'
         }}>
           {/* Visitor Counter - Bottom Left */}
           <div style={{
             display: 'flex',
-            alignItems: 'center'
+            alignItems: 'center',
+            flex: '0 0 auto'
           }}>
             <GlobalVisitorCounter />
           </div>
@@ -288,11 +329,12 @@ function App() {
           {/* Theme Dropdown - Bottom Right */}
           <div style={{
             display: 'flex',
-            alignItems: 'center'
+            alignItems: 'center',
+            flex: '0 0 auto'
           }}>
             <ThemeDropdown />
           </div>
-        </div>
+        </footer>
 
         {/* Floating Chat Bot Widget */}
         <ChatBotWidget />

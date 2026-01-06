@@ -13,7 +13,7 @@ export class ProfileKnowledgeService {
             {
                 category: 'faq',
                 question: 'Who is Ahmad Ziyad?',
-                answer: 'Ahmad Ziyad is a AI Software Engineer/Architect with over 13 years of experience. He specializes in designing, building, and scaling end-to-end enterprise applications using React, Python, and AWS cloud-native technologies. He has strong expertise in RESTful/event-driven APIs and multi-agent RAG systems.',
+                answer: 'Ahmad Ziyad is a Technical Product Manager/AI Software Engineer/Architect with over 13 years of experience. He specializes in designing, building, and scaling end-to-end enterprise applications using React, Python, and AWS cloud-native technologies. He has strong expertise in RESTful/event-driven APIs and multi-agent RAG systems.',
                 keywords: ['ahmad ziyad', 'who is', 'background', 'profile', 'experience']
             },
             {

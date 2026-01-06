@@ -5,7 +5,7 @@ import { ProfileData, ExtendedProfileData, ProfileStyling } from '../types/profi
 export const sampleProfileData: ProfileData = {
   id: 'sample-profile-1',
   name: 'Ahmad Ziyad',
-  title: 'AI Software Engineer/Architect',
+  title: 'Technical Product Manager/AI Software Engineer/Architect',
   description: 'Accomplished AI Software Engineer and enterprise solution architect with 13+ years of experience designing, building, and scaling end-to-end enterprise applications across cloud-native and hybrid environments. Proven expertise in developing intelligent automation solutions using Python, AWS, and cutting-edge AI/ML technologies including RAG-based applications, multi-agent workflows, and LLM integrations. Led modernization initiatives that reduced processing times by 40-70% while ensuring regulatory compliance and enterprise security. Expert in microservices architecture, event-driven systems, and DevOps practices with hands-on leadership in AWS cloud transformations, containerized deployments, and data pipeline optimization. Strong advocate of Agile delivery methodologies with demonstrated success in cross-functional team leadership, stakeholder management, and delivering mission-critical solutions for Fortune 500 clients in financial services, insurance, and banking sectors.',
   image: {
     src: '/profile.jpg',

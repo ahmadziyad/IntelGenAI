@@ -24,6 +24,7 @@ const DropdownButton = styled.button<{ theme: any }>`
   transition: all ${props => props.theme.animations.duration.normal} ${props => props.theme.animations.easing.smooth};
   min-width: 140px;
   justify-content: space-between;
+  white-space: nowrap;
   
   &:hover {
     background: ${props => props.theme.glass.heavy};
@@ -40,6 +41,13 @@ const DropdownButton = styled.button<{ theme: any }>`
     padding: 0.5rem 0.75rem;
     font-size: 0.8rem;
     min-width: 120px;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.75rem;
+    min-width: 100px;
+    gap: 0.25rem;
   }
 `;
 
@@ -62,10 +70,20 @@ const DropdownMenu = styled(motion.div)<{ theme: any }>`
   z-index: 1000;
   min-width: 280px;
   overflow: hidden;
+  max-height: 70vh;
+  overflow-y: auto;
   
   @media (max-width: 768px) {
     min-width: 240px;
     right: -20px;
+    max-height: 60vh;
+  }
+  
+  @media (max-width: 480px) {
+    min-width: 200px;
+    right: -40px;
+    max-height: 50vh;
+    top: calc(100% + 0.25rem);
   }
 `;
 
