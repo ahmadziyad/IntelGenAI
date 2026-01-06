@@ -153,30 +153,16 @@ export const sampleExtendedProfileData: ExtendedProfileData = {
   projects: [
     {
       id: 'proj-1',
-      name: 'NASA MCP Server',
-      description: 'A practical tutorial for building Model Context Protocol (MCP) servers using NASA\'s public APIs. Demonstrates MCP server architecture, API integration, authentication handling, and integration with AI assistants like Claude Desktop. Features tools for accessing NASA\'s Astronomy Picture of the Day and image search capabilities.',
-      technologies: ['TypeScript', 'Node.js', 'MCP SDK', 'NASA APIs', 'Claude Desktop Integration', 'REST APIs'],
-      link: 'https://github.com/ahmadziyad/NASA-MCP-Demo',
-      image: '/projects/nasa-mcp.jpg'
+      name: 'HealthcareTrial',
+      description: 'Healthcare Management System - A comprehensive healthcare platform designed to streamline patient management, appointment scheduling, and medical record keeping. Features secure patient data handling, doctor-patient communication, and integrated billing systems.',
+      technologies: ['React', 'Node.js', 'Express.js', 'MongoDB', 'JWT Authentication', 'Material-UI', 'Chart.js', 'Socket.io'],
+      link: 'https://github.com/ahmadziyad/HealthcareTrial',
+      demoLink: 'https://healthcare-trial.vercel.app/',
+      note: 'Feel free to contact me for a full demo and backend overview.',
+      image: '/projects/healthcare-trial.jpg'
     },
     {
       id: 'proj-2',
-      name: 'Voice Calculator',
-      description: 'Prompt-Based Calculator with dual interface - Use traditional calculator buttons or natural language chat commands. Features real-time synchronization between interfaces, NLP-powered calculation parsing (e.g., "Add 5 and 10"), and a FastAPI backend for high-performance computation. Modern responsive design with dark theme.',
-      technologies: ['Python', 'FastAPI', 'Uvicorn', 'HTML5', 'CSS3', 'JavaScript', 'NLP'],
-      link: 'https://github.com/ahmadziyad/VoiceCalculator',
-      image: '/projects/voice-calculator.jpg'
-    },
-    {
-      id: 'proj-3',
-      name: 'IntelGen Studio',
-      description: 'Interactive AI chat interface with advanced conversation capabilities, real-time responses, and intelligent context management.',
-      technologies: ['React', 'TypeScript', 'WebSocket', 'AI/ML APIs'],
-      link: '#intelligen-studio',
-      image: '/projects/studio.png'
-    },
-    {
-      id: 'proj-4',
       name: 'Pet Adoptions',
       description: 'Smart Pet Adoption Platform - A comprehensive web application that connects pet lovers with adoptable animals. Features advanced search filters, pet matching algorithms, adoption application management, and real-time messaging between adopters and shelters.',
       technologies: ['React', 'Node.js', 'MongoDB', 'Express.js', 'Socket.io', 'JWT Authentication', 'Cloudinary', 'Material-UI'],
@@ -184,20 +170,36 @@ export const sampleExtendedProfileData: ExtendedProfileData = {
       image: '/projects/pet-adoptions.jpg'
     },
     {
-      id: 'proj-5',
-      name: 'HealthcareTrial',
-      description: 'Healthcare Management System - A comprehensive healthcare platform designed to streamline patient management, appointment scheduling, and medical record keeping. Features secure patient data handling, doctor-patient communication, and integrated billing systems.',
-      technologies: ['React', 'Node.js', 'Express.js', 'MongoDB', 'JWT Authentication', 'Material-UI', 'Chart.js', 'Socket.io'],
-      link: 'https://github.com/ahmadziyad/HealthcareTrial',
-      image: '/projects/healthcare-trial.jpg'
+      id: 'proj-3',
+      name: 'NASA MCP Server',
+      description: 'A practical tutorial for building Model Context Protocol (MCP) servers using NASA\'s public APIs. Demonstrates MCP server architecture, API integration, authentication handling, and integration with AI assistants like Claude Desktop. Features tools for accessing NASA\'s Astronomy Picture of the Day and image search capabilities.',
+      technologies: ['TypeScript', 'Node.js', 'MCP SDK', 'NASA APIs', 'Claude Desktop Integration', 'REST APIs'],
+      link: 'https://github.com/ahmadziyad/NASA-MCP-Demo',
+      image: '/projects/nasa-mcp.jpg'
     },
     {
-      id: 'proj-6',
+      id: 'proj-4',
       name: 'Property Risk Insight',
       description: 'Property Risk Assessment Platform - An intelligent system for analyzing and evaluating property investment risks. Features comprehensive risk scoring algorithms, market trend analysis, financial projections, and detailed property assessment reports for informed investment decisions.',
       technologies: ['React', 'Node.js', 'Python', 'Machine Learning', 'TensorFlow', 'MongoDB', 'Express.js', 'Chart.js', 'Material-UI'],
       link: 'https://github.com/ahmadziyad/PropertyRiskInsight',
       image: '/projects/property-risk-insight.jpg'
+    },
+    {
+      id: 'proj-5',
+      name: 'Voice Calculator',
+      description: 'Prompt-Based Calculator with dual interface - Use traditional calculator buttons or natural language chat commands. Features real-time synchronization between interfaces, NLP-powered calculation parsing (e.g., "Add 5 and 10"), and a FastAPI backend for high-performance computation. Modern responsive design with dark theme.',
+      technologies: ['Python', 'FastAPI', 'Uvicorn', 'HTML5', 'CSS3', 'JavaScript', 'NLP'],
+      link: 'https://github.com/ahmadziyad/VoiceCalculator',
+      image: '/projects/voice-calculator.jpg'
+    },
+    {
+      id: 'proj-6',
+      name: 'IntelGen Studio',
+      description: 'Interactive AI chat interface with advanced conversation capabilities, real-time responses, and intelligent context management.',
+      technologies: ['React', 'TypeScript', 'WebSocket', 'AI/ML APIs'],
+      link: '#intelligen-studio',
+      image: '/projects/studio.png'
     },
     {
       id: 'proj-7',

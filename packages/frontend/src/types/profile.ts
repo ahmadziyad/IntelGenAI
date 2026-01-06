@@ -47,6 +47,8 @@ export interface ProjectItem {
   description: string;
   technologies: string[];
   link?: string;
+  demoLink?: string;
+  note?: string;
   image?: string;
 }
 

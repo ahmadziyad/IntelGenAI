@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import TabNavigation from './components/TabNavigation';
 import ChatBotWidget from './components/ChatBotWidget';
 import ThemeDropdown from './components/ThemeDropdown';
-import VisitorCounter from './components/VisitorCounter';
+import GlobalVisitorCounter from './components/GlobalVisitorCounter';
 
 import ProfileSkillsTab from './components/profile/ProfileSkillsTab';
 import ExperienceTab from './components/profile/ExperienceTab';
@@ -203,30 +203,18 @@ function App() {
         position: 'relative',
         zIndex: 1
       }}>
-        {/* Header Section - Simple heading/label with visitor counter and theme dropdown */}
+        {/* Header Section - Simple heading/label only */}
         <div style={{
           height: '10vh',
           minHeight: '60px',
           maxHeight: '80px',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'space-between',
-          padding: '0 1rem',
-          position: 'relative'
+          justifyContent: 'center',
+          padding: '0 1rem'
         }}>
-          {/* Visitor Counter - Left Upper */}
           <div style={{
-            position: 'absolute',
-            top: '1rem',
-            left: '1rem',
-            zIndex: 10
-          }}>
-            <VisitorCounter />
-          </div>
-          
-          <div style={{
-            textAlign: 'center',
-            flex: 1
+            textAlign: 'center'
           }}>
             <h1 style={{
               fontSize: '2.5rem',
@@ -248,26 +236,16 @@ function App() {
               {sampleProfileData.title}
             </p>
           </div>
-          
-          {/* Theme Dropdown - Right Upper */}
-          <div style={{
-            position: 'absolute',
-            top: '1rem',
-            right: '1rem',
-            zIndex: 10
-          }}>
-            <ThemeDropdown />
-          </div>
         </div>
 
-        {/* Tabs Section - 90% of viewport height */}
+        {/* Tabs Section - Adjusted height to leave space for bottom footer */}
         <div style={{
-          height: '90vh',
-          maxHeight: '90vh',
+          height: '85vh',
+          maxHeight: '85vh',
           overflow: 'hidden',
           display: 'flex',
           flexDirection: 'column',
-          padding: '0 0.5rem 0.5rem 0.5rem'
+          padding: '0 0.5rem 0 0.5rem'
         }}>
           <div style={{
             background: theme.glass.medium,
@@ -286,6 +264,33 @@ function App() {
               defaultActiveTab="profile-skills"
               onTabChange={handleTabChange}
             />
+          </div>
+        </div>
+
+        {/* Bottom Footer - Visitor Counter and Theme Dropdown */}
+        <div style={{
+          height: '5vh',
+          minHeight: '40px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          padding: '0 1rem',
+          position: 'relative'
+        }}>
+          {/* Visitor Counter - Bottom Left */}
+          <div style={{
+            display: 'flex',
+            alignItems: 'center'
+          }}>
+            <GlobalVisitorCounter />
+          </div>
+          
+          {/* Theme Dropdown - Bottom Right */}
+          <div style={{
+            display: 'flex',
+            alignItems: 'center'
+          }}>
+            <ThemeDropdown />
           </div>
         </div>
 

@@ -326,28 +326,42 @@ const ProjectsTab: React.FC<ProjectsTabProps> = ({ profile, styling }) => {
                 }}>
                   {project.name}
                 </Heading>
-                {project.link && (
-                  project.link === '#intelligen-studio' ? (
-                    <ProjectButton
-                      onClick={handleIntelGenStudioClick}
-                      theme={styling}
-                      title="Open chat interface"
-                    >
-                      Try Demo
-                      <span>💬</span>
-                    </ProjectButton>
-                  ) : (
+                <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+                  {project.demoLink && (
                     <ProjectLink
-                      href={project.link}
+                      href={project.demoLink}
                       target="_blank"
                       rel="noopener noreferrer"
                       theme={styling}
+                      style={{ background: aiTheme.gradients.quantum }}
                     >
-                      View Project
-                      <span>🔗</span>
+                      Live Demo
+                      <span>🚀</span>
                     </ProjectLink>
-                  )
-                )}
+                  )}
+                  {project.link && (
+                    project.link === '#intelligen-studio' ? (
+                      <ProjectButton
+                        onClick={handleIntelGenStudioClick}
+                        theme={styling}
+                        title="Open chat interface"
+                      >
+                        Try Demo
+                        <span>💬</span>
+                      </ProjectButton>
+                    ) : (
+                      <ProjectLink
+                        href={project.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        theme={styling}
+                      >
+                        View Code
+                        <span>🔗</span>
+                      </ProjectLink>
+                    )
+                  )}
+                </div>
               </Flex>
               <Text variant="body" theme={styling} style={{
                 color: aiTheme.colors.textSecondary,
@@ -355,6 +369,27 @@ const ProjectsTab: React.FC<ProjectsTabProps> = ({ profile, styling }) => {
               }}>
                 {project.description}
               </Text>
+              {project.note && (
+                <div style={{
+                  padding: '0.75rem',
+                  background: aiTheme.glass.light,
+                  border: `1px solid ${aiTheme.colors.aiBlue}30`,
+                  borderRadius: aiTheme.borderRadius.md,
+                  marginTop: '0.5rem'
+                }}>
+                  <Text variant="caption" theme={styling} style={{
+                    color: aiTheme.colors.aiBlue,
+                    fontSize: '0.85rem',
+                    fontStyle: 'italic',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.5rem'
+                  }}>
+                    <span>💡</span>
+                    {project.note}
+                  </Text>
+                </div>
+              )}
               <div style={{ marginTop: '0.5rem' }}>
                 <Text variant="caption" theme={styling} style={{
                   color: aiTheme.colors.textSecondary,

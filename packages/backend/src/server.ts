@@ -93,6 +93,7 @@ app.get('/health', (req, res) => {
 import chatRoutes from './routes/chat';
 import monitoringRoutes from './routes/monitoring';
 import conversationFlowRoutes from './routes/conversationFlow';
+import visitorsRoutes from './routes/visitors';
 
 // Import middleware
 import { conversationFlowMiddleware, conversationErrorRecoveryMiddleware } from './middleware/conversationFlowMiddleware';
@@ -111,6 +112,7 @@ app.use('/api/chat', conversationFlowMiddleware);
 app.use('/api/chat', chatRoutes);
 app.use('/api/monitoring', monitoringRoutes);
 app.use('/api/conversation-flow', conversationFlowRoutes);
+app.use('/api/visitors', visitorsRoutes);
 
 // Conversation error recovery middleware
 app.use(conversationErrorRecoveryMiddleware);
