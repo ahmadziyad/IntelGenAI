@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import TabNavigation from './components/TabNavigation';
 import ChatBotWidget from './components/ChatBotWidget';
 import ThemeDropdown from './components/ThemeDropdown';
+import VisitorCounter from './components/VisitorCounter';
 
 import ProfileSkillsTab from './components/profile/ProfileSkillsTab';
 import ExperienceTab from './components/profile/ExperienceTab';
@@ -202,7 +203,7 @@ function App() {
         position: 'relative',
         zIndex: 1
       }}>
-        {/* Header Section - Simple heading/label with theme dropdown */}
+        {/* Header Section - Simple heading/label with visitor counter and theme dropdown */}
         <div style={{
           height: '10vh',
           minHeight: '60px',
@@ -210,8 +211,19 @@ function App() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          padding: '0 1rem'
+          padding: '0 1rem',
+          position: 'relative'
         }}>
+          {/* Visitor Counter - Left Upper */}
+          <div style={{
+            position: 'absolute',
+            top: '1rem',
+            left: '1rem',
+            zIndex: 10
+          }}>
+            <VisitorCounter />
+          </div>
+          
           <div style={{
             textAlign: 'center',
             flex: 1
@@ -237,11 +249,12 @@ function App() {
             </p>
           </div>
           
-          {/* Theme Dropdown */}
+          {/* Theme Dropdown - Right Upper */}
           <div style={{
             position: 'absolute',
             top: '1rem',
-            right: '1rem'
+            right: '1rem',
+            zIndex: 10
           }}>
             <ThemeDropdown />
           </div>
