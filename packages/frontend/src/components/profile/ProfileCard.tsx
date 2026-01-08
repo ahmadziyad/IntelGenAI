@@ -3,7 +3,7 @@ import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { motion, useInView } from 'framer-motion';
 import { ProfileCardProps } from '../../types/profile';
-import { Flex, Heading, Text } from '../../styles/styled';
+import { Text } from '../../styles/styled';
 import { media, animations } from '../../styles/theme';
 import ProfileImage from './ProfileImage';
 
@@ -271,54 +271,6 @@ const ContentArea = styled.div<{ theme: any }>`
   }
 `;
 
-// Name heading with gradient text and enhanced animations
-const NameHeading = styled(Heading) <{ theme: any }>`
-  background: ${props => props.theme.gradients.primary};
-  background-size: 100% 100%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  font-size: ${props => props.theme.typography.fontSize.medium};
-  font-weight: 700;
-  margin-bottom: 0;
-  transition: all ${animations.duration.normal} ${animations.easing.easeInOut};
-
-  ${media.mobile} {
-    font-size: ${props => props.theme.typography.fontSize.medium};
-  }
-
-  ${media.tablet} {
-    font-size: ${props => props.theme.typography.fontSize.large};
-  }
-
-  ${media.desktop} {
-    font-size: ${props => props.theme.typography.fontSize.large};
-  }
-
-  /* Reduced motion support */
-  ${media.reducedMotion} {
-    transition: none;
-  }
-`;
-
-// Title text with secondary color and smooth transitions
-const TitleText = styled(Text) <{ theme: any }>`
-  color: ${props => props.theme.colors.textSecondary};
-  font-size: ${props => props.theme.typography.fontSize.small};
-  font-weight: 500;
-  margin-bottom: 0;
-  transition: color ${animations.duration.normal} ${animations.easing.easeInOut};
-
-  ${media.mobile} {
-    font-size: ${props => props.theme.typography.fontSize.small};
-  }
-
-  /* Reduced motion support */
-  ${media.reducedMotion} {
-    transition: none;
-  }
-`;
-
 // Description with proper line height and truncation
 const DescriptionText = styled(Text) <{ theme: any }>`
   color: #E2E8F0;
@@ -410,20 +362,6 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
       opacity: 1,
       scale: 1,
       rotate: 0,
-    },
-  };
-
-  const buttonVariants = {
-    hidden: {
-      opacity: 0,
-      y: 30,
-      scale: 0.9,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-
     },
   };
 

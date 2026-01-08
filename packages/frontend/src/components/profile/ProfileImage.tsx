@@ -6,13 +6,11 @@ import { ProfileImageProps } from '../../types/profile';
 import { media, animations } from '../../styles/theme';
 import { 
   createProfileError, 
-  ProfileErrorType, 
-  handleImageError,
+  ProfileErrorType,
   ProfileError 
 } from '../../utils/errorHandling';
 import { 
   createOptimizedImage, 
-  preloadImage, 
   globalLazyLoader,
   OptimizedImageResult 
 } from '../../utils/imageOptimization';
@@ -262,7 +260,6 @@ const ProfileImage: React.FC<ProfileImageProps> = ({
   const [hasError, setHasError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isInView, setIsInView] = useState(false);
-  const [currentSrc, setCurrentSrc] = useState(src);
   const [retryCount, setRetryCount] = useState(0);
   const [errorDetails, setErrorDetails] = useState<ProfileError | null>(null);
   const [optimizedImage, setOptimizedImage] = useState<OptimizedImageResult | null>(null);
@@ -335,19 +332,22 @@ const ProfileImage: React.FC<ProfileImageProps> = ({
       }
     );
 
-    if (containerRef.current) {
-      observer.observe(containerRef.current);
+    const currentContainer = containerRef.current;
+    const currentImg = imgRef.current;
+
+    if (currentContainer) {
+      observer.observe(currentContainer);
       
       // Also register with global lazy loader if image element exists
-      if (imgRef.current) {
-        globalLazyLoader.observe(imgRef.current);
+      if (currentImg) {
+        globalLazyLoader.observe(currentImg);
       }
     }
 
     return () => {
       observer.disconnect();
-      if (imgRef.current) {
-        globalLazyLoader.unobserve(imgRef.current);
+      if (currentImg) {
+        globalLazyLoader.unobserve(currentImg);
       }
     };
   }, []);
@@ -393,10 +393,11 @@ const ProfileImage: React.FC<ProfileImageProps> = ({
           const url = new URL(errorSrc);
           url.searchParams.set('q', '70'); // Lower quality
           url.searchParams.delete('fm'); // Remove WebP format
-          setCurrentSrc(url.toString());
+          // For retry, we'll use the original src
+          imgElement.src = src;
         } else {
           // For other sources, try the original URL again
-          setCurrentSrc(src);
+          imgElement.src = src;
         }
       }, RETRY_DELAY * (retryCount + 1)); // Exponential backoff
       
@@ -407,93 +408,6 @@ const ProfileImage: React.FC<ProfileImageProps> = ({
     setIsLoading(false);
     setHasError(true);
     setIsLoaded(false);
-  };
-
-  // Enhanced image URL optimization with error handling
-  const getOptimizedImageUrl = (originalSrc: string): string => {
-    try {
-      // Validate URL format
-      if (!originalSrc || typeof originalSrc !== 'string') {
-        throw new Error('Invalid image source provided');
-      }
-      
-      // Handle relative URLs
-      if (originalSrc.startsWith('/') || originalSrc.startsWith('./')) {
-        return originalSrc;
-      }
-      
-      // Validate absolute URLs
-      try {
-        new URL(originalSrc);
-      } catch {
-        throw new Error('Invalid URL format');
-      }
-      
-      // Check if the URL is from Unsplash (common in sample data)
-      if (originalSrc.includes('unsplash.com')) {
-        const url = new URL(originalSrc);
-        
-        // Apply different optimization based on retry count
-        if (retryCount === 0) {
-          url.searchParams.set('fm', 'webp');
-          url.searchParams.set('q', '85');
-        } else if (retryCount === 1) {
-          url.searchParams.set('fm', 'jpg');
-          url.searchParams.set('q', '75');
-        } else {
-          // Final attempt with minimal optimization
-          url.searchParams.set('q', '60');
-        }
-        
-        return url.toString();
-      }
-      
-      // For other URLs, return as-is
-      return originalSrc;
-    } catch (error) {
-      createProfileError(
-        ProfileErrorType.IMAGE_LOAD_ERROR,
-        `Failed to optimize image URL: ${error instanceof Error ? error.message : 'Unknown error'}`,
-        { originalSrc, retryCount }
-      );
-      
-      // Return fallback image
-      return '/default-avatar.png';
-    }
-  };
-
-  // Enhanced srcSet generation with error handling
-  const generateSrcSet = (originalSrc: string): string => {
-    try {
-      if (!originalSrc || typeof originalSrc !== 'string') {
-        return '';
-      }
-      
-      if (originalSrc.includes('unsplash.com')) {
-        const baseUrl = originalSrc.split('?')[0];
-        const sizeMap = {
-          small: '160',
-          medium: '280',
-          large: '400'
-        };
-        
-        const currentSize = sizeMap[size];
-        const format = retryCount === 0 ? 'webp' : 'jpg';
-        const quality = retryCount === 0 ? '85' : retryCount === 1 ? '75' : '60';
-        
-        return `${baseUrl}?w=${currentSize}&h=${currentSize}&fit=crop&crop=face&fm=${format}&q=${quality} 1x, ${baseUrl}?w=${parseInt(currentSize) * 2}&h=${parseInt(currentSize) * 2}&fit=crop&crop=face&fm=${format}&q=${quality} 2x`;
-      }
-      
-      return originalSrc;
-    } catch (error) {
-      createProfileError(
-        ProfileErrorType.IMAGE_LOAD_ERROR,
-        `Failed to generate srcSet: ${error instanceof Error ? error.message : 'Unknown error'}`,
-        { originalSrc, size, retryCount }
-      );
-      
-      return originalSrc;
-    }
   };
 
   // Animation variants for image entrance (respecting reduced motion)
