@@ -254,27 +254,6 @@ const ExperienceTab: React.FC<ExperienceTabProps> = ({ profile, styling }) => {
                   {exp.company} • {exp.duration}
                 </Text>
                 
-                {/* Client Information */}
-                {exp.client && (
-                  <ClientInfo $currentTheme={theme}>
-                    <Text variant="caption" theme={styling} style={{
-                      color: theme.colors.textSecondary,
-                      fontSize: '0.85rem',
-                      fontWeight: '500',
-                      marginBottom: '0.25rem',
-                      display: 'block'
-                    }}>
-                      Client:
-                    </Text>
-                    <Text variant="body" theme={styling} style={{
-                      color: theme.colors.text,
-                      fontSize: '0.9rem',
-                      lineHeight: '1.5'
-                    }}>
-                      {exp.client}
-                    </Text>
-                  </ClientInfo>
-                )}
                 
                 {/* Expandable Description */}
                 <ExpandableDescription description={exp.description} styling={styling} />

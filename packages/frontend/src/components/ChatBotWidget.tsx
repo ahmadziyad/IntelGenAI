@@ -8,6 +8,68 @@ import MessageInput from './MessageInput';
 import { generateId } from '../utils/helpers';
 import { useSpeech } from './VoiceInterface';
 import { useTheme } from '../contexts/ThemeContext';
+import { sampleExtendedProfileData } from '../data/sampleProfile';
+
+// Frontend-only AI response generation using profile data
+const generateFrontendAIResponse = (userQuery: string): string => {
+  const query = userQuery.toLowerCase();
+  
+  // Check if query is off-topic
+  const profileKeywords = ['ahmad', 'ziyad', 'profile', 'experience', 'skills', 'projects', 'work', 'career', 'background', 'contact', 'education', 'certification', 'current', 'role', 'company'];
+  const isProfileRelated = profileKeywords.some(keyword => query.includes(keyword));
+  
+  if (!isProfileRelated && !query.includes('who') && !query.includes('what') && !query.includes('tell') && !query.includes('about')) {
+    return `I'm Ahmad Ziyad's AI Assistant, and I'm here specifically to help with questions about his professional profile, skills, experience, and projects.\n\nI can't help with "${userQuery}" as it's outside my scope, but I'd be happy to answer questions about:\n\n🔹 **Technical Expertise:** AI/ML, AWS Cloud, Python, React, Microservices\n🔹 **Professional Experience:** 13+ years in enterprise software development\n🔹 **Current Projects:** HealthcareTrial, Pet Adoptions, NASA MCP Server\n🔹 **Certifications:** AWS, Oracle Cloud, PMP, PMI-ACP\n🔹 **Contact Information:** How to reach Ahmad for opportunities\n\nHow can I assist you with information about Ahmad Ziyad's professional profile?`;
+  }
+
+  // Who is Ahmad Ziyad
+  if (query.includes('who') && (query.includes('ahmad') || query.includes('ziyad'))) {
+    return `Ahmad Ziyad is a Technical Product Manager/AI Software Engineer/Architect with 13+ years of experience in enterprise software development. He specializes in AI/ML solutions, AWS cloud architecture, and full-stack development.\n\n**Current Role:** AI Software Engineer at Royal Cyber Inc. (Client: Essent Guaranty Inc)\n**Location:** Charlotte, NC, USA\n**Expertise:** AI/ML, RAG systems, AWS cloud-native solutions, Python, React\n\n**Contact Information:**\n📧 Email: ah.ziyad@gmail.com\n💼 LinkedIn: https://www.linkedin.com/in/ahmadziyad\n💻 GitHub: https://github.com/ahmadziyad\n\n💡 Feel free to contact Ahmad for a full demo and backend overview.`;
+  }
+
+  // Skills and technical expertise
+  if (query.includes('skill') || query.includes('technical') || query.includes('technology') || query.includes('tech')) {
+    return `Ahmad has expert-level proficiency in:\n\n🤖 **AI/ML & Intelligent Automation:**\n• TensorFlow, PyTorch, Keras, Hugging Face\n• RAG-based Applications, LangChain, MLOps\n• AWS Bedrock, SageMaker AI, Vector Databases\n• Multi-agent workflows, MCP (Model Context Protocol)\n\n☁️ **Cloud & DevOps (Expert):**\n• AWS: Lambda, S3, EC2, RDS, DynamoDB, API Gateway\n• Docker, Kubernetes, Terraform, CI/CD Pipelines\n• CloudFormation, Serverless Architecture\n\n💻 **Full-Stack Development:**\n• Backend: Python, FastAPI, Node.js, Java\n• Frontend: React, JavaScript, TypeScript\n• Databases: Oracle, DB2, PostgreSQL, DynamoDB\n\n**GitHub Portfolio:** https://github.com/ahmadziyad\n**LinkedIn:** https://www.linkedin.com/in/ahmadziyad`;
+  }
+
+  // Projects
+  if (query.includes('project') || query.includes('portfolio') || query.includes('work') || query.includes('built')) {
+    return `Ahmad has developed several impressive projects:\n\n🏥 **HealthcareTrial** - Healthcare Management System\n• Live Demo: https://healthcare-trial.vercel.app/\n• GitHub: https://github.com/ahmadziyad/HealthcareTrial\n• Tech: React, Node.js, MongoDB, JWT Authentication\n• Note: Feel free to contact Ahmad for a full demo and backend overview\n\n🐾 **Pet Adoptions** - Smart Pet Adoption Platform\n• GitHub: https://github.com/ahmadziyad/PetAdoptions\n• Tech: React, Node.js, MongoDB, Socket.io\n\n🚀 **NASA MCP Server** - Model Context Protocol Tutorial\n• GitHub: https://github.com/ahmadziyad/NASA-MCP-Demo\n• Tech: TypeScript, Node.js, MCP SDK, NASA APIs\n\n🏠 **Property Risk Insight** - Investment Risk Assessment\n• GitHub: https://github.com/ahmadziyad/PropertyRiskInsight\n• Tech: React, Python, Machine Learning, TensorFlow\n\n🔗 **Property Title Chain** - Blockchain Property Title Management\n• GitHub: https://github.com/ahmadziyad/TitleChain\n• Tech: React, Blockchain, Ethereum, Solidity\n\n💡 Contact Ahmad for detailed project demos and technical discussions.`;
+  }
+
+  // Experience
+  if (query.includes('experience') || query.includes('career') || query.includes('work history') || query.includes('background')) {
+    return `Ahmad has 13+ years of progressive experience:\n\n🔹 **AI Software Engineer** - Royal Cyber Inc. (Aug 2022 - Present)\n   Client: Essent Guaranty Inc (Leading insurance provider)\n   • Built RAG-based underwriting decision support systems\n   • Reduced processing times by 40-70% through intelligent automation\n   • Implemented AWS cloud-native solutions with Python and microservices\n\n🔹 **IT Senior Developer** - Arab Bank (May 2018 - June 2021)\n   • Architected secure CI/CD pipelines using Azure DevOps\n   • Developed cloud-native applications on AWS with Python, ECS, Lambda\n   • Improved process efficiency by 45%\n\n🔹 **Senior Software Consultant** - I2S Business Solutions (2016-2018)\n🔹 **Senior Consultant** - HCL Technologies (2014-2016)\n🔹 **Programming Analyst** - Cognizant Technology Solutions (2011-2014)\n\n**LinkedIn Profile:** https://www.linkedin.com/in/ahmadziyad\n**Contact:** ah.ziyad@gmail.com`;
+  }
+
+  // Current role
+  if (query.includes('current') || query.includes('job') || query.includes('role') || query.includes('company')) {
+    return `Ahmad is currently an **AI Software Engineer** at Royal Cyber Inc. (Client: Essent Guaranty Inc) since August 2022.\n\n**Key Responsibilities:**\n• Designing event-driven architectures using Python on AWS\n• Building RAG-based applications and multi-agent workflows\n• Implementing intelligent automation solutions\n• Working with AWS services: Lambda, EventBridge, API Gateway, Bedrock\n\n**Major Achievements:**\n• Built Underwriting Decision Support Agent using AWS RAG\n• Reduced underwriting review time by 40%\n• Developed automated document validation systems\n• Decreased post-closing defects by 60%\n• Implemented MCP agent networks for title chain extraction\n\n**Client:** Essent Guaranty Inc - Leading insurance and title services provider in the United States\n\n**LinkedIn:** https://www.linkedin.com/in/ahmadziyad`;
+  }
+
+  // Education
+  if (query.includes('education') || query.includes('degree') || query.includes('university') || query.includes('college')) {
+    return `Ahmad has a strong educational foundation:\n\n🎓 **Master's Degree** - Management Information Systems\n   University at Buffalo (June 2021 - May 2022)\n   Expertise: Statistical Analytics, Technology Innovation Management, Predictive Analytics\n\n🎓 **Bachelor of Technology** - Information Technology\n   Shri Ram Murti Smarak (SRMS) Institutions (July 2007 - June 2011)\n\n**LinkedIn Profile:** https://www.linkedin.com/in/ahmadziyad`;
+  }
+
+  // Certifications
+  if (query.includes('certification') || query.includes('certified') || query.includes('cert')) {
+    return `Ahmad holds multiple industry-leading certifications:\n\n🏆 **AWS Certifications:**\n• AWS Certified Solutions Architect – Associate (2025-2028)\n• Certified AI Practitioner - AWS (2025-2028)\n\n🏆 **Oracle Cloud:**\n• OCI Certified Generative AI Professional (2025-2027)\n• OCI 2025 Certified AI Foundations Associate (2025-2027)\n\n🏆 **Project Management:**\n• Project Management Professional (PMP) (2024-2027)\n• Agile Certified Practitioner (PMI-ACP) (2024-2027)\n\n🏆 **Specialized:**\n• Building LLM Applications with Prompt Engineering (NVIDIA)\n• Enterprise Design Thinking Co-Creator (IBM)\n• Azure Fundamentals (Microsoft)\n\n**View certificates:** https://www.linkedin.com/in/ahmadziyad`;
+  }
+
+  // Contact information
+  if (query.includes('contact') || query.includes('reach') || query.includes('email') || query.includes('phone')) {
+    return `You can reach Ahmad Ziyad through multiple channels:\n\n📧 **Email:** ah.ziyad@gmail.com\n📍 **Location:** Charlotte, NC, USA\n💼 **LinkedIn:** https://www.linkedin.com/in/ahmadziyad\n💻 **GitHub:** https://github.com/ahmadziyad\n\n💡 **For Project Demos:** Feel free to contact Ahmad for a full demo and backend overview of his projects and technical capabilities.\n\n🤝 **Professional Inquiries:** Available for consulting, technical discussions, and collaboration opportunities.`;
+  }
+
+  // AI/ML specific questions
+  if (query.includes('ai') || query.includes('ml') || query.includes('machine learning') || query.includes('artificial intelligence') || query.includes('rag')) {
+    return `Ahmad has extensive AI/ML expertise:\n\n🤖 **Current AI Work at Royal Cyber:**\n• Built multi-agent RAG systems for underwriting\n• Developed Underwriting Decision Support Agent using AWS RAG\n• Implemented automated document validation with RAG retrieval\n• Created MCP agent networks for historical title chain extraction\n\n🛠️ **AI/ML Technologies:**\n• TensorFlow, PyTorch, Keras, Hugging Face\n• AWS Bedrock, SageMaker AI, Vector Databases\n• LangChain, MLOps, Embedding Models\n• Multi-agent workflows, MCP (Model Context Protocol)\n\n🏆 **AI Certifications:**\n• AWS Certified AI Practitioner (2025-2028)\n• OCI Certified Generative AI Professional (2025-2027)\n• Building LLM Applications with Prompt Engineering (NVIDIA)\n\n**GitHub:** https://github.com/ahmadziyad\n**Contact:** ah.ziyad@gmail.com for AI project discussions`;
+  }
+
+  // Default response for general queries
+  return `I'm Ahmad Ziyad's AI Assistant! I can help you learn about his professional background:\n\n**Available Information:**\n🔹 Technical skills and expertise (AI/ML, AWS, Python, React)\n🔹 Professional experience (13+ years in enterprise software)\n🔹 Current role and achievements\n🔹 Projects and portfolio\n🔹 Certifications and education\n🔹 Contact information\n\n**Quick Links:**\n• LinkedIn: https://www.linkedin.com/in/ahmadziyad\n• GitHub: https://github.com/ahmadziyad\n• HealthcareTrial Demo: https://healthcare-trial.vercel.app/\n• Email: ah.ziyad@gmail.com\n\nWhat specific aspect of Ahmad's profile would you like to know more about?`;
+};
 
 interface ChatBotWidgetProps {
   onChatOpen?: () => void;
@@ -211,29 +273,14 @@ const ChatBotWidget: React.FC<ChatBotWidgetProps> = ({ onChatOpen, welcomeMessag
 
   // Initialize session when widget opens
   useEffect(() => {
-    const initSession = async () => {
-      if (isOpen && !sessionId) {
-        try {
-          const response = await fetch('http://localhost:3001/api/chat/sessions', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ userId: 'user-1' })
-          });
-          const result = await response.json();
-          if (result.success) {
-            setSessionId(result.data.sessionId);
-          }
-        } catch (error) {
-          console.error('Failed to initialize chat session:', error);
-        }
-      }
-    };
-
-    initSession();
+    // Set a simple frontend session ID
+    if (isOpen && !sessionId) {
+      setSessionId('frontend-session-' + Date.now());
+    }
 
     // Add welcome message when widget first opens
     if (isOpen && messages.length === 0) {
-      const defaultWelcome = "Hello! I'm here to help you with any questions about Ahmad Ziyad's profile, skills, or experience. How can I assist you today?";
+      const defaultWelcome = "Hello! I'm Ahmad Ziyad's AI Assistant. I'm here to help you with questions about his professional profile, technical skills, experience, and projects.\n\n🔹 **Ask me about:**\n• Technical expertise (AI/ML, AWS, Python, React)\n• Professional experience and achievements\n• Current and past projects\n• Certifications and education\n• Contact information\n\n💡 Feel free to contact Ahmad directly at ah.ziyad@gmail.com for a full demo and backend overview.\n\nHow can I assist you today?";
       const welcomeMsg: Message = {
         id: generateId(),
         sessionId: sessionId || 'temp',
@@ -252,9 +299,16 @@ const ChatBotWidget: React.FC<ChatBotWidgetProps> = ({ onChatOpen, welcomeMessag
   const handleSendMessage = async (content: string) => {
     if (!content.trim()) return;
 
+    // Ensure we have a session ID
+    let currentSessionId = sessionId;
+    if (!currentSessionId) {
+      currentSessionId = 'frontend-session-' + Date.now();
+      setSessionId(currentSessionId);
+    }
+
     const userMessage: Message = {
       id: generateId(),
-      sessionId,
+      sessionId: currentSessionId,
       content: content.trim(),
       type: 'user',
       timestamp: new Date()
@@ -264,38 +318,32 @@ const ChatBotWidget: React.FC<ChatBotWidgetProps> = ({ onChatOpen, welcomeMessag
     setIsLoading(true);
 
     try {
-      // Call the real API
-      const response = await fetch('http://localhost:3001/api/chat/message', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          sessionId,
-          message: content.trim()
-        })
-      });
+      // Use frontend-only AI response generation
+      const aiResponse = generateFrontendAIResponse(content.trim());
+      
+      const assistantMessage: Message = {
+        id: generateId(),
+        sessionId: currentSessionId,
+        content: aiResponse,
+        type: 'assistant',
+        timestamp: new Date(),
+        metadata: {
+          intent: 'profile-assistant',
+          confidence: 0.9
+        }
+      };
 
-      const result = await response.json();
+      setMessages(prev => [...prev, assistantMessage]);
 
-      if (result.success && result.data.message) {
-        const assistantMessage: Message = {
-          ...result.data.message,
-          timestamp: new Date(result.data.message.timestamp)
-        };
-
-        setMessages(prev => [...prev, assistantMessage]);
-
-        // Speak the response if voice is enabled
-        speak(assistantMessage.content);
-      } else {
-        throw new Error(result.error || 'Failed to get response from AI');
-      }
+      // Speak the response if voice is enabled
+      speak(assistantMessage.content);
 
       setIsLoading(false);
     } catch (error) {
-      console.error('Error sending message:', error);
+      console.error('Error generating AI response:', error);
       const errorMessage: Message = {
         id: generateId(),
-        sessionId,
+        sessionId: currentSessionId,
         content: "I'm sorry, I encountered an error processing your message. Please try again.",
         type: 'assistant',
         timestamp: new Date(),
@@ -342,8 +390,8 @@ const ChatBotWidget: React.FC<ChatBotWidgetProps> = ({ onChatOpen, welcomeMessag
                 onSendMessage={handleSendMessage}
                 disabled={isLoading}
                 primaryColor={theme.colors.aiBlue}
-                placeholder="Type your message..."
-                voiceEnabled={false}
+                placeholder="Type your message or click the microphone to speak..."
+                voiceEnabled={true}
               />
             </ChatContent>
           </ChatPanel>

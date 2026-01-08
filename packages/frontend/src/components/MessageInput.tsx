@@ -118,9 +118,9 @@ const CharacterCount = styled.div<{ $isNearLimit: boolean; $isOverLimit: boolean
   padding: 0 4px;
 `;
 
-const ValidationMessage = styled.div<{ $theme: any }>`
+const ValidationMessage = styled.div<{ $theme: any; $isSuccess?: boolean }>`
   font-size: 12px;
-  color: #dc3545;
+  color: ${props => props.$isSuccess ? '#28a745' : '#dc3545'};
   margin-top: 4px;
   padding: 0 4px;
 `;
@@ -137,6 +137,7 @@ const MessageInput: React.FC<MessageInputProps> = ({
   const [message, setMessage] = useState('');
   const [isFocused, setIsFocused] = useState(false);
   const [validationError, setValidationError] = useState('');
+  const [isVoiceSuccess, setIsVoiceSuccess] = useState(false);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   // Auto-resize textarea
@@ -206,8 +207,17 @@ const MessageInput: React.FC<MessageInputProps> = ({
   const handleVoiceResult = (transcript: string) => {
     if (transcript.trim()) {
       setMessage(transcript);
-      // Auto-send voice messages or let user review first
-      // For now, let user review the transcript before sending
+      setValidationError('Voice input received - sending in 1.5 seconds...');
+      setIsVoiceSuccess(true);
+      // Auto-send voice messages after a short delay to allow user review
+      setTimeout(() => {
+        if (transcript.trim()) {
+          onSendMessage(transcript.trim());
+          setMessage('');
+          setValidationError('');
+          setIsVoiceSuccess(false);
+        }
+      }, 1500); // 1.5 second delay to allow user to see the transcript
     }
   };
 
@@ -234,7 +244,7 @@ const MessageInput: React.FC<MessageInputProps> = ({
           onKeyDown={handleKeyDown}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
-          placeholder={placeholder}
+          placeholder={voiceEnabled ? "Type your message or click 🎙️ to speak..." : placeholder}
           disabled={disabled}
           maxLength={maxLength + 100} // Allow slight overflow for validation
           rows={1}
@@ -277,7 +287,7 @@ const MessageInput: React.FC<MessageInputProps> = ({
       )}
       
       {validationError && (
-        <ValidationMessage id="input-error" role="alert" $theme={theme}>
+        <ValidationMessage id="input-error" role="alert" $theme={theme} $isSuccess={isVoiceSuccess}>
           {validationError}
         </ValidationMessage>
       )}

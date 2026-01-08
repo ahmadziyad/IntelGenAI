@@ -101,119 +101,181 @@ const CounterNumber = styled(motion.span)<{ $theme: any }>`
   }
 `;
 
+// Frontend-only visitor tracking utilities
+class FrontendVisitorTracker {
+  private static readonly STORAGE_KEYS = {
+    TOTAL_COUNT: 'portfolio-total-visitors',
+    SESSION_VISITED: 'portfolio-session-visited',
+    UNIQUE_VISITORS: 'portfolio-unique-visitors',
+    LAST_VISIT: 'portfolio-last-visit',
+    VISITOR_ID: 'portfolio-visitor-id'
+  };
+
+  private static readonly BASE_COUNT = 1110;
+
+  // Generate a unique visitor ID
+  private static generateVisitorId(): string {
+    return 'visitor_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+  }
+
+  // Get or create visitor ID
+  private static getVisitorId(): string {
+    let visitorId = localStorage.getItem(this.STORAGE_KEYS.VISITOR_ID);
+    if (!visitorId) {
+      visitorId = this.generateVisitorId();
+      localStorage.setItem(this.STORAGE_KEYS.VISITOR_ID, visitorId);
+    }
+    return visitorId;
+  }
+
+  // Check if this is a new session (not visited in last 30 minutes)
+  private static isNewSession(): boolean {
+    const lastVisit = localStorage.getItem(this.STORAGE_KEYS.LAST_VISIT);
+    const sessionVisited = sessionStorage.getItem(this.STORAGE_KEYS.SESSION_VISITED);
+    
+    if (sessionVisited) {
+      return false; // Already counted in this session
+    }
+
+    if (!lastVisit) {
+      return true; // First time visitor
+    }
+
+    const lastVisitTime = parseInt(lastVisit, 10);
+    const now = Date.now();
+    const thirtyMinutes = 30 * 60 * 1000;
+
+    return (now - lastVisitTime) > thirtyMinutes;
+  }
+
+  // Get current visitor count
+  static getVisitorCount(): number {
+    const storedCount = localStorage.getItem(this.STORAGE_KEYS.TOTAL_COUNT);
+    return storedCount ? parseInt(storedCount, 10) : this.BASE_COUNT;
+  }
+
+  // Track a new visitor
+  static trackVisitor(): { count: number; isNewVisitor: boolean } {
+    const isNewVisitor = this.isNewSession();
+    
+    if (isNewVisitor) {
+      // Mark this session as visited
+      sessionStorage.setItem(this.STORAGE_KEYS.SESSION_VISITED, 'true');
+      localStorage.setItem(this.STORAGE_KEYS.LAST_VISIT, Date.now().toString());
+      
+      // Increment visitor count
+      const currentCount = this.getVisitorCount();
+      const newCount = currentCount + 1;
+      localStorage.setItem(this.STORAGE_KEYS.TOTAL_COUNT, newCount.toString());
+      
+      // Track unique visitors
+      this.trackUniqueVisitor();
+      
+      return { count: newCount, isNewVisitor: true };
+    }
+
+    return { count: this.getVisitorCount(), isNewVisitor: false };
+  }
+
+  // Track unique visitors (for analytics)
+  private static trackUniqueVisitor(): void {
+    const visitorId = this.getVisitorId();
+    const uniqueVisitors = this.getUniqueVisitors();
+    
+    if (!uniqueVisitors.includes(visitorId)) {
+      uniqueVisitors.push(visitorId);
+      // Keep only last 1000 unique visitors to prevent storage bloat
+      if (uniqueVisitors.length > 1000) {
+        uniqueVisitors.splice(0, uniqueVisitors.length - 1000);
+      }
+      localStorage.setItem(this.STORAGE_KEYS.UNIQUE_VISITORS, JSON.stringify(uniqueVisitors));
+    }
+  }
+
+  // Get unique visitors list
+  private static getUniqueVisitors(): string[] {
+    const stored = localStorage.getItem(this.STORAGE_KEYS.UNIQUE_VISITORS);
+    return stored ? JSON.parse(stored) : [];
+  }
+
+  // Get analytics data
+  static getAnalytics() {
+    return {
+      totalVisitors: this.getVisitorCount(),
+      uniqueVisitors: this.getUniqueVisitors().length,
+      lastVisit: localStorage.getItem(this.STORAGE_KEYS.LAST_VISIT),
+      visitorId: this.getVisitorId()
+    };
+  }
+
+  // Simulate realistic visitor growth (optional)
+  static simulateGrowth(): void {
+    const now = Date.now();
+    const lastGrowth = localStorage.getItem('portfolio-last-growth');
+    
+    if (!lastGrowth || (now - parseInt(lastGrowth, 10)) > 60000) { // Every minute
+      const currentCount = this.getVisitorCount();
+      const growthRate = Math.random() < 0.3 ? 1 : 0; // 30% chance of growth
+      
+      if (growthRate > 0) {
+        const newCount = currentCount + growthRate;
+        localStorage.setItem(this.STORAGE_KEYS.TOTAL_COUNT, newCount.toString());
+        localStorage.setItem('portfolio-last-growth', now.toString());
+      }
+    }
+  }
+}
+
 const GlobalVisitorCounter: React.FC = () => {
   const { theme } = useTheme();
-  const [visitorCount, setVisitorCount] = useState(1110);
+  const [visitorCount, setVisitorCount] = useState(FrontendVisitorTracker.getVisitorCount());
   const [isAnimating, setIsAnimating] = useState(false);
-  const [isOnline, setIsOnline] = useState(navigator.onLine);
 
-  // Check online status
+  // Track visitor on component mount
   useEffect(() => {
-    const handleOnline = () => setIsOnline(true);
-    const handleOffline = () => setIsOnline(false);
+    const { count, isNewVisitor } = FrontendVisitorTracker.trackVisitor();
     
-    window.addEventListener('online', handleOnline);
-    window.addEventListener('offline', handleOffline);
-    
-    return () => {
-      window.removeEventListener('online', handleOnline);
-      window.removeEventListener('offline', handleOffline);
-    };
+    if (isNewVisitor) {
+      setVisitorCount(count);
+      setIsAnimating(true);
+      setTimeout(() => setIsAnimating(false), 1000);
+    } else {
+      setVisitorCount(count);
+    }
   }, []);
 
-  // Fetch and update visitor count from backend
+  // Optional: Simulate realistic growth (uncomment if desired)
   useEffect(() => {
-    const fetchVisitorCount = async () => {
-      try {
-        // Try to get count from backend first
-        const response = await fetch('http://localhost:3001/api/visitors', {
-          method: 'GET',
-          headers: { 'Content-Type': 'application/json' }
-        });
-        
-        if (response.ok) {
-          const data = await response.json();
-          setVisitorCount(data.count || 1110);
-        } else {
-          // Fallback to localStorage if backend unavailable
-          const localCount = localStorage.getItem('portfolio-visitor-count');
-          setVisitorCount(localCount ? parseInt(localCount, 10) : 1110);
-        }
-      } catch (error) {
-        console.log('Backend unavailable, using local storage');
-        // Fallback to localStorage
-        const localCount = localStorage.getItem('portfolio-visitor-count');
-        setVisitorCount(localCount ? parseInt(localCount, 10) : 1110);
+    const interval = setInterval(() => {
+      FrontendVisitorTracker.simulateGrowth();
+      const newCount = FrontendVisitorTracker.getVisitorCount();
+      if (newCount !== visitorCount) {
+        setVisitorCount(newCount);
+        setIsAnimating(true);
+        setTimeout(() => setIsAnimating(false), 800);
       }
-    };
-
-    fetchVisitorCount();
-  }, []);
-
-  // Track new visitor
-  useEffect(() => {
-    const trackVisitor = async () => {
-      const hasVisited = localStorage.getItem('portfolio-visited-session');
-      
-      if (!hasVisited) {
-        try {
-          // Try to increment via backend
-          const response = await fetch('http://localhost:3001/api/visitors/increment', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' }
-          });
-          
-          if (response.ok) {
-            const data = await response.json();
-            setVisitorCount(data.count);
-            setIsAnimating(true);
-            setTimeout(() => setIsAnimating(false), 1000);
-          } else {
-            // Fallback to local increment
-            const localCount = localStorage.getItem('portfolio-visitor-count');
-            const newCount = localCount ? parseInt(localCount, 10) + 1 : 1111;
-            setVisitorCount(newCount);
-            localStorage.setItem('portfolio-visitor-count', newCount.toString());
-          }
-        } catch (error) {
-          console.log('Backend unavailable, using local increment');
-          // Fallback to local increment
-          const localCount = localStorage.getItem('portfolio-visitor-count');
-          const newCount = localCount ? parseInt(localCount, 10) + 1 : 1111;
-          setVisitorCount(newCount);
-          localStorage.setItem('portfolio-visitor-count', newCount.toString());
-        }
-        
-        // Mark this session as visited
-        localStorage.setItem('portfolio-visited-session', 'true');
-      }
-    };
-
-    trackVisitor();
-  }, []);
-
-  // Periodic sync with backend (every 30 seconds)
-  useEffect(() => {
-    if (!isOnline) return;
-    
-    const interval = setInterval(async () => {
-      try {
-        const response = await fetch('http://localhost:3001/api/visitors');
-        if (response.ok) {
-          const data = await response.json();
-          if (data.count !== visitorCount) {
-            setVisitorCount(data.count);
-            setIsAnimating(true);
-            setTimeout(() => setIsAnimating(false), 1000);
-          }
-        }
-      } catch (error) {
-        // Silently fail if backend unavailable
-      }
-    }, 30000);
+    }, 60000); // Check every minute
 
     return () => clearInterval(interval);
-  }, [isOnline, visitorCount]);
+  }, [visitorCount]);
+
+  // Track page visibility changes (when user returns to tab)
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (!document.hidden) {
+        // User returned to the page, check for new session
+        const { count, isNewVisitor } = FrontendVisitorTracker.trackVisitor();
+        if (isNewVisitor) {
+          setVisitorCount(count);
+          setIsAnimating(true);
+          setTimeout(() => setIsAnimating(false), 1000);
+        }
+      }
+    };
+
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
+  }, []);
 
   const formatVisitorCount = (count: number): string => {
     return count.toLocaleString();
@@ -226,14 +288,14 @@ const GlobalVisitorCounter: React.FC = () => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: 0.2 }}
       whileHover={{ scale: 1.05 }}
-      title={isOnline ? 'Live visitor count' : 'Offline mode - local count'}
+      title={`Portfolio visitors - Session tracking enabled`}
     >
       <VisitorIcon $theme={theme}>
-        {isOnline ? '👥' : '📱'}
+        👥
       </VisitorIcon>
       <CounterText $theme={theme}>
         <CounterLabel $theme={theme}>
-          Visitors {!isOnline && '(Offline)'}
+          Visitors
         </CounterLabel>
         <CounterNumber
           $theme={theme}

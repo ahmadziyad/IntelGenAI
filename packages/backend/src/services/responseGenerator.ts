@@ -516,31 +516,35 @@ export class ResponseGenerator {
     const { classification } = queryAnalysis;
     const links: Array<{ title: string; url: string }> = [];
 
-    // Add intent-specific links (these would be configured based on actual documentation)
-    switch (classification.intent) {
-      case 'onboarding':
-        links.push(
-          { title: 'Getting Started Guide', url: '/docs/getting-started' },
-          { title: 'Installation Instructions', url: '/docs/installation' }
-        );
-        break;
+    // Always include Ahmad Ziyad's core profile links
+    links.push(
+      { title: 'LinkedIn Profile', url: 'https://www.linkedin.com/in/ahmadziyad' },
+      { title: 'GitHub Portfolio', url: 'https://github.com/ahmadziyad' }
+    );
 
-      case 'troubleshooting':
-        links.push(
-          { title: 'Troubleshooting Guide', url: '/docs/troubleshooting' },
-          { title: 'Common Issues', url: '/docs/common-issues' }
-        );
+    // Add intent-specific profile links
+    switch (classification.intent) {
+      case 'faq':
+        // Add project demos if relevant
+        links.push({ title: 'HealthcareTrial Demo', url: 'https://healthcare-trial.vercel.app/' });
         break;
 
       case 'product':
+        // Add specific project links
         links.push(
-          { title: 'Product Documentation', url: '/docs/product' },
-          { title: 'API Reference', url: '/docs/api' }
+          { title: 'HealthcareTrial Project', url: 'https://github.com/ahmadziyad/HealthcareTrial' },
+          { title: 'Pet Adoptions Project', url: 'https://github.com/ahmadziyad/PetAdoptions' },
+          { title: 'NASA MCP Server', url: 'https://github.com/ahmadziyad/NASA-MCP-Demo' }
         );
+        break;
+
+      default:
+        // Add general contact information
+        links.push({ title: 'Contact Ahmad', url: 'mailto:ah.ziyad@gmail.com' });
         break;
     }
 
-    return links;
+    return links.slice(0, 4); // Limit to 4 links
   }
 
   /**
@@ -843,25 +847,66 @@ export class ResponseGenerator {
    * Generate response when no knowledge base entries are found
    */
   private generateNoKnowledgeResponse(userQuery: string): GeneratedResponse {
-    const content = `I don't have specific information about "${userQuery}" in my knowledge base. However, I can still try to help you with general questions or connect you with human support for more detailed assistance.`;
+    // Check if the query is related to Ahmad Ziyad's profile
+    const lowerQuery = userQuery.toLowerCase();
+    const profileKeywords = ['ahmad', 'ziyad', 'profile', 'experience', 'skills', 'projects', 'work', 'career', 'background'];
+    const isProfileRelated = profileKeywords.some(keyword => lowerQuery.includes(keyword));
+    
+    let content: string;
+    
+    if (isProfileRelated) {
+      content = `I don't have specific information about "${userQuery}" in my knowledge base, but I'd be happy to help you learn more about Ahmad Ziyad's professional background.\n\n`;
+      content += '**What I can tell you about:**\n';
+      content += '• Technical skills and expertise (AI/ML, AWS, Python, React)\n';
+      content += '• Professional experience and career progression\n';
+      content += '• Current projects and achievements\n';
+      content += '• Certifications and education\n';
+      content += '• Contact information for direct discussions\n\n';
+      content += '💡 Feel free to contact Ahmad directly at ah.ziyad@gmail.com for detailed discussions.';
+    } else {
+      content = `I'm Ahmad Ziyad's AI Assistant, and I'm here specifically to help with questions about his professional profile, skills, experience, and projects.\n\n`;
+      content += `I can't help with "${userQuery}" as it's outside my scope, but I'd be happy to answer questions about:\n\n`;
+      content += '🔹 **Technical Expertise:** AI/ML, AWS Cloud, Python, React, Microservices\n';
+      content += '🔹 **Professional Experience:** 13+ years in enterprise software development\n';
+      content += '🔹 **Current Projects:** HealthcareTrial, Pet Adoptions, NASA MCP Server\n';
+      content += '🔹 **Certifications:** AWS, Oracle Cloud, PMP, PMI-ACP\n';
+      content += '🔹 **Contact Information:** How to reach Ahmad for opportunities\n\n';
+      content += 'How can I assist you with information about Ahmad Ziyad\'s professional profile?';
+    }
 
     const metadata: ResponseMetadata = {
       processingTime: 25,
-      modelUsed: 'fallback',
-      confidence: 0.3,
-      intent: 'general'
+      modelUsed: 'profile-assistant',
+      confidence: 0.8,
+      intent: 'redirect'
     };
 
     const suggestions = [
-      'Can you rephrase the question?',
-      'What else can you help me with?',
-      'I\'d like to speak with someone'
+      'Tell me about Ahmad\'s technical skills',
+      'What projects has Ahmad worked on?',
+      'How can I contact Ahmad?',
+      'What is Ahmad\'s current role?'
+    ];
+
+    const nextSteps = [
+      'Ask about Ahmad\'s professional background',
+      'Inquire about specific technical expertise',
+      'Request contact information for direct communication'
+    ];
+
+    const relatedLinks = [
+      { title: 'LinkedIn Profile', url: 'https://www.linkedin.com/in/ahmadziyad' },
+      { title: 'GitHub Portfolio', url: 'https://github.com/ahmadziyad' },
+      { title: 'HealthcareTrial Demo', url: 'https://healthcare-trial.vercel.app/' },
+      { title: 'Contact Ahmad', url: 'mailto:ah.ziyad@gmail.com' }
     ];
 
     return {
       content,
       metadata,
-      suggestions
+      suggestions,
+      nextSteps,
+      relatedLinks
     };
   }
 
@@ -904,32 +949,34 @@ export class ResponseGenerator {
   private generateFAQLinks(knowledgeEntry: KnowledgeEntry): Array<{ title: string; url: string }> {
     const links: Array<{ title: string; url: string }> = [];
     
-    switch (knowledgeEntry.category) {
-      case 'faq':
-        links.push(
-          { title: 'Complete FAQ Section', url: '/docs/faq' },
-          { title: 'Getting Started Guide', url: '/docs/getting-started' }
-        );
-        break;
-      case 'product':
-        links.push(
-          { title: 'Product Documentation', url: '/docs/product' },
-          { title: 'Feature Comparison', url: '/docs/features' },
-          { title: 'Pricing Information', url: '/pricing' }
-        );
-        break;
-      case 'troubleshooting':
-        links.push(
-          { title: 'Troubleshooting Guide', url: '/docs/troubleshooting' },
-          { title: 'Common Issues', url: '/docs/common-issues' }
-        );
-        break;
-      case 'onboarding':
-        links.push(
-          { title: 'Setup Instructions', url: '/docs/setup' },
-          { title: 'Configuration Guide', url: '/docs/configuration' }
-        );
-        break;
+    // Always include Ahmad Ziyad's profile links
+    links.push(
+      { title: 'LinkedIn Profile', url: 'https://www.linkedin.com/in/ahmadziyad' },
+      { title: 'GitHub Portfolio', url: 'https://github.com/ahmadziyad' }
+    );
+    
+    // Add specific project links based on content
+    const lowerAnswer = knowledgeEntry.answer.toLowerCase();
+    
+    if (lowerAnswer.includes('healthcare')) {
+      links.push({ title: 'HealthcareTrial Demo', url: 'https://healthcare-trial.vercel.app/' });
+      links.push({ title: 'HealthcareTrial Code', url: 'https://github.com/ahmadziyad/HealthcareTrial' });
+    }
+    
+    if (lowerAnswer.includes('pet') || lowerAnswer.includes('adoption')) {
+      links.push({ title: 'Pet Adoptions Project', url: 'https://github.com/ahmadziyad/PetAdoptions' });
+    }
+    
+    if (lowerAnswer.includes('nasa') || lowerAnswer.includes('mcp')) {
+      links.push({ title: 'NASA MCP Server', url: 'https://github.com/ahmadziyad/NASA-MCP-Demo' });
+    }
+    
+    if (lowerAnswer.includes('property') || lowerAnswer.includes('risk')) {
+      links.push({ title: 'Property Risk Insight', url: 'https://github.com/ahmadziyad/PropertyRiskInsight' });
+    }
+    
+    if (lowerAnswer.includes('title') || lowerAnswer.includes('chain')) {
+      links.push({ title: 'Property Title Chain', url: 'https://github.com/ahmadziyad/TitleChain' });
     }
     
     return links;
@@ -942,37 +989,27 @@ export class ResponseGenerator {
   private generateFAQNextSteps(knowledgeEntry: KnowledgeEntry, userQuery: string): string[] {
     const nextSteps: string[] = [];
     
-    switch (knowledgeEntry.category) {
-      case 'product':
-        nextSteps.push(
-          'Review the detailed product documentation',
-          'Check if this feature meets your specific needs',
-          'Consider trying a demo or free trial'
-        );
-        break;
-      case 'troubleshooting':
-        nextSteps.push(
-          'Try the suggested solution',
-          'Test if the issue is resolved',
-          'Contact support if the problem persists'
-        );
-        break;
-      case 'onboarding':
-        nextSteps.push(
-          'Follow the setup instructions',
-          'Complete the configuration steps',
-          'Test your setup with a simple example'
-        );
-        break;
-      default:
-        nextSteps.push(
-          'Let me know if you need clarification',
-          'Ask follow-up questions if needed',
-          'Explore related topics in our documentation'
-        );
+    // Always include contact option
+    nextSteps.push('Contact Ahmad directly at ah.ziyad@gmail.com for detailed discussions');
+    
+    const lowerAnswer = knowledgeEntry.answer.toLowerCase();
+    const lowerQuery = userQuery.toLowerCase();
+    
+    if (lowerAnswer.includes('project') || lowerQuery.includes('project')) {
+      nextSteps.push('Explore the GitHub repositories for technical details');
+      nextSteps.push('Request a live demo of specific projects');
+    } else if (lowerAnswer.includes('skill') || lowerQuery.includes('skill')) {
+      nextSteps.push('Review the LinkedIn profile for detailed experience');
+      nextSteps.push('Ask about specific technical implementations');
+    } else if (lowerAnswer.includes('experience') || lowerQuery.includes('experience')) {
+      nextSteps.push('Check the LinkedIn profile for complete work history');
+      nextSteps.push('Inquire about specific industry experience');
+    } else {
+      nextSteps.push('Ask follow-up questions about Ahmad\'s expertise');
+      nextSteps.push('Request more information about specific areas of interest');
     }
     
-    return nextSteps;
+    return nextSteps.slice(0, 3); // Limit to 3 steps
   }
 
   /**

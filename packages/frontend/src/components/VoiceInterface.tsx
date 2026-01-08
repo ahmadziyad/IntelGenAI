@@ -66,10 +66,26 @@ const VoiceButton = styled.button<{
     animation: pulse 1.5s ease-in-out infinite;
   `}
   
+  ${props => props.$isActive && `
+    animation: recording-pulse 1s ease-in-out infinite;
+  `}
+  
   @keyframes pulse {
     0% { opacity: 1; }
     50% { opacity: 0.5; }
     100% { opacity: 1; }
+  }
+  
+  @keyframes recording-pulse {
+    0% { 
+      box-shadow: 0 0 0 0 ${props => props.$primaryColor}40;
+    }
+    70% {
+      box-shadow: 0 0 0 10px ${props => props.$primaryColor}00;
+    }
+    100% {
+      box-shadow: 0 0 0 0 ${props => props.$primaryColor}00;
+    }
   }
 `;
 
