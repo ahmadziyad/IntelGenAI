@@ -1,7 +1,6 @@
 import { Router, Request, Response } from 'express';
 import { APIResponse } from '@intelligenai/shared';
 import { sessionService } from '../services/sessionService';
-import { conversationService } from '../services/conversationService';
 
 const router = Router();
 

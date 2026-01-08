@@ -1,7 +1,6 @@
-import { Message, ConversationContext, TroubleshootingState, KnowledgeEntry } from '@intelligenai/shared';
+import { Message, ConversationContext, TroubleshootingState } from '@intelligenai/shared';
 import { conversationService } from './conversationService';
 import { sessionService } from './sessionService';
-import { knowledgeBaseService } from './knowledgeBaseService';
 import { logger } from '../utils/logger';
 
 export interface FlowStep {
@@ -446,7 +445,7 @@ export class ConversationFlowManager {
   /**
    * Get onboarding steps based on flow type
    */
-  private async getOnboardingSteps(flowType: string): Promise<FlowStep[]> {
+  private async getOnboardingSteps(_flowType: string): Promise<FlowStep[]> {
     // In a real implementation, this would fetch from knowledge base
     const generalSteps: FlowStep[] = [
       {
@@ -487,7 +486,7 @@ export class ConversationFlowManager {
   /**
    * Get troubleshooting solutions for a specific issue
    */
-  private async getTroubleshootingSolutions(issue: string): Promise<TroubleshootingSolution[]> {
+  private async getTroubleshootingSolutions(_issue: string): Promise<TroubleshootingSolution[]> {
     // In a real implementation, this would use the knowledge base service
     // For now, return mock solutions ordered by difficulty and success rate
     const solutions: TroubleshootingSolution[] = [

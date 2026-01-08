@@ -1,4 +1,4 @@
-import { Message, ConversationContext, Session } from '@intelligenai/shared';
+import { Message, ConversationContext } from '@intelligenai/shared';
 import { logger } from '../utils/logger';
 
 export interface ContextConfig {
@@ -213,7 +213,6 @@ export class ContextManager {
    */
   cleanupExpiredContexts(): number {
     let cleanedCount = 0;
-    const now = new Date();
 
     for (const [sessionId, context] of this.contextStore.entries()) {
       if (context.messages.length === 0) {
