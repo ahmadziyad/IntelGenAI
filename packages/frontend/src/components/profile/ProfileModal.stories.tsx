@@ -302,7 +302,7 @@ Test with:
 
 // Interactive modal demo
 export const InteractiveDemo: Story = {
-  render: () => {
+  render: function InteractiveDemoComponent() {
     const [isOpen, setIsOpen] = React.useState(false);
 
     return (

@@ -32,16 +32,6 @@ const spinAnimation = keyframes`
   }
 `;
 
-// Pulse animation for attention
-const pulseAnimation = keyframes`
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.05);
-  }
-`;
-
 // Styled button component with variants and interactions
 const StyledButton = styled.button<{
   $variant: 'primary' | 'secondary' | 'outline';

@@ -130,8 +130,6 @@ describe('useSpeech hook', () => {
   });
 
   it('speaks text when speak function is called', () => {
-    const { useSpeech } = require('./VoiceInterface');
-    
     // This would need to be tested in a component that uses the hook
     // For now, we'll test the basic functionality
     expect(mockSpeechSynthesis.speak).toBeDefined();

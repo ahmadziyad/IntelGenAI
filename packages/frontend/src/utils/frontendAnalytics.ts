@@ -55,7 +55,7 @@ class FrontendAnalytics {
         interactions: [],
         referrer: document.referrer || 'direct',
         userAgent: navigator.userAgent,
-        screenResolution: `${screen.width}x${screen.height}`,
+        screenResolution: typeof window !== 'undefined' && window.screen ? `${window.screen.width}x${window.screen.height}` : 'unknown',
         timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone
       };
       

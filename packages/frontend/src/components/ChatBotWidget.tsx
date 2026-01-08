@@ -8,7 +8,6 @@ import MessageInput from './MessageInput';
 import { generateId } from '../utils/helpers';
 import { useSpeech } from './VoiceInterface';
 import { useTheme } from '../contexts/ThemeContext';
-import { sampleExtendedProfileData } from '../data/sampleProfile';
 
 // Frontend-only AI response generation using profile data
 const generateFrontendAIResponse = (userQuery: string): string => {

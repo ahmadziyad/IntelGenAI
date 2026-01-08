@@ -12,6 +12,7 @@
     "test:unit": "react-scripts test --testPathPattern=unit --watchAll=false",
     "test:pbt": "react-scripts test --testPathPattern=property --watchAll=false",
     "lint": "eslint src/**/*.{ts,tsx}",
+    "lint:ci": "eslint src/**/*.{ts,tsx} --max-warnings 50",
     "perf:audit": "lighthouse http://localhost:3000 --output=json --output-path=./performance-audit.json",
     "perf:monitor": "node -e \"console.log('Performance monitoring enabled in development mode')\"",
     "eject": "react-scripts eject",

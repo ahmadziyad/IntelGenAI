@@ -183,12 +183,12 @@ describe('ActionButton', () => {
       const button = screen.getByTestId('action-button');
       
       // Use act to wrap the click event that triggers state updates
-      await waitFor(() => {
-        fireEvent.click(button);
-      });
+      fireEvent.click(button);
 
-      // Ripple elements are created dynamically, so we check if the click was handled
-      expect(mockOnClick).toHaveBeenCalledTimes(1);
+      await waitFor(() => {
+        // Ripple elements are created dynamically, so we check if the click was handled
+        expect(mockOnClick).toHaveBeenCalledTimes(1);
+      });
     });
   });
 

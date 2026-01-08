@@ -1,6 +1,6 @@
 // ProfileCard component tests
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import ProfileCard from './ProfileCard';
 import { defaultTheme } from '../../styles/theme';
 import { ProfileData } from '../../types/profile';

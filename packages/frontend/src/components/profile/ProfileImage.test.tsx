@@ -124,11 +124,13 @@ describe('ProfileImage', () => {
     renderWithTheme(<ProfileImage {...defaultProps} src={unsplashSrc} />);
     
     await waitFor(() => {
-      const image = screen.queryByTestId('profile-image');
-      if (image) {
-        expect(image.getAttribute('src')).toContain('fm=webp');
-        expect(image.getAttribute('src')).toContain('q=85');
-      }
+      const image = screen.getByTestId('profile-image');
+      expect(image.getAttribute('src')).toContain('fm=webp');
+    });
+    
+    await waitFor(() => {
+      const image = screen.getByTestId('profile-image');
+      expect(image.getAttribute('src')).toContain('q=85');
     });
   });
 
@@ -139,11 +141,9 @@ describe('ProfileImage', () => {
     expect(container).toBeInTheDocument();
     
     // In test environment, image should be visible immediately
-    const image = screen.queryByTestId('profile-image');
-    if (image) {
-      expect(image).toHaveAttribute('alt', defaultProps.alt);
-      expect(image).toHaveAttribute('loading', 'lazy');
-      expect(image).toHaveAttribute('decoding', 'async');
-    }
+    const image = screen.getByTestId('profile-image');
+    expect(image).toHaveAttribute('alt', defaultProps.alt);
+    expect(image).toHaveAttribute('loading', 'lazy');
+    expect(image).toHaveAttribute('decoding', 'async');
   });
 });

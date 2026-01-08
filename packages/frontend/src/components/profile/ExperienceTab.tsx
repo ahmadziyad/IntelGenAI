@@ -94,15 +94,6 @@ const SkillTag = styled.span<{ theme: ProfileStyling; $currentTheme: any }>`
   }
 `;
 
-const ClientInfo = styled.div<{ $currentTheme: any }>`
-  background: ${props => props.$currentTheme.glass.light};
-  border: 1px solid ${props => props.$currentTheme.glass.border};
-  border-radius: ${props => props.$currentTheme.borderRadius.md};
-  padding: 0.75rem;
-  margin: 0.75rem 0;
-  border-left: 3px solid ${props => props.$currentTheme.colors.aiBlue};
-`;
-
 const DescriptionContainer = styled.div`
   position: relative;
 `;

@@ -2,10 +2,6 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import { useTheme } from '../contexts/ThemeContext';
-import { 
-  initializeVisitorTracking, 
-  simulateVisitorIncrement
-} from '../utils/visitorTracking';
 
 const CounterContainer = styled(motion.div)<{ $theme: any }>`
   display: flex;

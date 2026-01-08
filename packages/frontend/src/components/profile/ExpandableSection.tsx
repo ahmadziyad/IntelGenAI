@@ -16,30 +16,6 @@ const SectionContainer = styled.div<{ theme: ProfileStyling }>`
   background: transparent;
 `;
 
-const SectionHeader = styled.div<{ theme: ProfileStyling }>`
-  padding: 1rem 2rem 0.5rem;
-  display: flex;
-  align-items: center;
-`;
-
-const SectionTitle = styled.h3<{ theme: ProfileStyling }>`
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: ${props => props.theme.colors.text};
-  margin: 0;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  
-  &::before {
-    content: '';
-    width: 3px;
-    height: 1.1rem;
-    background: ${props => props.theme.gradients.primary};
-    border-radius: 2px;
-  }
-`;
-
 const CompactRow = styled.div`
   display: flex;
   flex-direction: row;

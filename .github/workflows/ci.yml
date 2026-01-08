@@ -24,7 +24,7 @@ jobs:
       run: npm ci --legacy-peer-deps
       
     - name: Lint code
-      run: npm run lint --workspace=packages/frontend --if-present
+      run: npm run lint:ci --workspace=packages/frontend --if-present
       
     - name: Build frontend
       run: npm run build:frontend

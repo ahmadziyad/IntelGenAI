@@ -3,7 +3,7 @@ import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { motion, useInView } from 'framer-motion';
 import { ProfileCardProps } from '../../types/profile';
-import { Card, Flex, Heading, Text } from '../../styles/styled';
+import { Flex, Heading, Text } from '../../styles/styled';
 import { media, animations } from '../../styles/theme';
 import ProfileImage from './ProfileImage';
 
